@@ -27,7 +27,10 @@ void Print_Minuto(void);
 void Print_Segundo(void);
 
 //FUNCIONES PARA RTC
+void set_RTC(void);
 void get_RTC(void);
+unsigned char bcd_to_decimal(unsigned char number);
+unsigned char decimal_to_bcd(unsigned char number);
 unsigned int anio = 20;
 unsigned int mes = 10;
 unsigned int dia = 1;
@@ -43,7 +46,7 @@ void main(void) {
     UART_Println("Hola mundo");
     __delay_ms(1500);
     OLED_Init();
-    
+    set_RTC();
     while(1){
         get_RTC();
         Print_Ticket();
@@ -95,7 +98,33 @@ void get_RTC(void){
     I2C_Stop_DS();            
 }
 
+void set_RTC(void){
+      
+      Hora = decimal_to_bcd(Hora);
+      Minuto = decimal_to_bcd(Minuto);
+      Segundo = decimal_to_bcd(Segundo);
+      anio = decimal_to_bcd(anio);
+      mes = decimal_to_bcd(mes);
+      dia = decimal_to_bcd(dia);
+ 
+      // Write data to DS3231 RTC
+      I2C_Start_DS();         
+      I2C_Write_DS(0xD0);    
+      I2C_Write_DS(0);        
+      I2C_Write_DS(Segundo);        
+      I2C_Write_DS(Minuto);   
+      I2C_Write_DS(Hora);     
+      I2C_Write_DS(1);        
+      I2C_Write_DS(dia);    
+      I2C_Write_DS(mes);    
+      I2C_Write_DS(anio);    
+      I2C_Stop_DS();          
+}
+
 void Print_Ticket(void){
+    Hora = bcd_to_decimal(Hora);
+    Minuto = bcd_to_decimal(Minuto);
+    Segundo = bcd_to_decimal(Segundo);
     char sms[10];
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
@@ -103,4 +132,12 @@ void Print_Ticket(void){
     UART_Print(sms);
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     UART_Println(sms);
+}
+
+unsigned char bcd_to_decimal(unsigned char number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+ 
+unsigned char decimal_to_bcd(unsigned char number) {
+  return(((number / 10) << 4) + (number % 10));
 }
