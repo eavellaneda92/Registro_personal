@@ -1,0 +1,517 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"1 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+"72 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\doprnt.c
+[v _pad pad `(i  1 s 2 pad ]
+"287
+[v _dtoa dtoa `(i  1 s 2 dtoa ]
+"692
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+"1390
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"4 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\i2c.c
+[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+"37
+[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
+"61
+[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
+"72
+[v _I2C_Wait I2C_Wait `(v  1 e 1 0 ]
+"88
+[v _I2C_Send I2C_Send `(v  1 e 1 0 ]
+"23 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"38
+[v _Print_Menu Print_Menu `(v  1 e 1 0 ]
+"49
+[v _Print_Hora Print_Hora `(v  1 e 1 0 ]
+"55
+[v _Print_Minuto Print_Minuto `(v  1 e 1 0 ]
+"61
+[v _Print_Segundo Print_Segundo `(v  1 e 1 0 ]
+"4 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\Oled.c
+[v _ssd1306_command ssd1306_command `(v  1 s 1 ssd1306_command ]
+"13
+[v _OLED_Init OLED_Init `(v  1 e 1 0 ]
+"57
+[v _OLEDsetCursor OLEDsetCursor `(v  1 e 1 0 ]
+"74
+[v _OLED_NPuts OLED_NPuts `(v  1 e 1 0 ]
+"102
+[v _OLED_SPuts OLED_SPuts `(v  1 e 1 0 ]
+"136
+[v _OLEDClear OLEDClear `(v  1 e 1 0 ]
+"93 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X/Oled.h
+[v _SMALL_FONTS SMALL_FONTS `C[570]uc  1 e 570 0 ]
+"196
+[v _TINY_FONTS TINY_FONTS `C[285]uc  1 e 285 0 ]
+"212
+[v _BIG_FONTS BIG_FONTS `C[3040]uc  1 e 3040 0 ]
+[s S205 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"3657 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h
+[s S214 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+[u S223 . 1 `S205 1 . 1 0 `S214 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES223  1 e 1 @3987 ]
+"6581
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+[s S248 . 1 `uc 1 SEN 1 0 :1:0 
+`uc 1 RSEN 1 0 :1:1 
+`uc 1 PEN 1 0 :1:2 
+`uc 1 RCEN 1 0 :1:3 
+`uc 1 ACKEN 1 0 :1:4 
+`uc 1 ACKDT 1 0 :1:5 
+`uc 1 ACKSTAT 1 0 :1:6 
+`uc 1 GCEN 1 0 :1:7 
+]
+"6823
+[u S257 . 1 `S248 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES257  1 e 1 @4037 ]
+"6868
+[v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
+"6938
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
+[s S269 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_NOT_W 1 0 :1:2 
+]
+"7021
+[s S272 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 D_NOT_A 1 0 :1:5 
+]
+[s S275 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+[s S284 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S289 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DAT 1 0 :1:5 
+]
+[s S295 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S300 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_WRITE 1 0 :1:2 
+]
+[s S303 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_ADDRESS 1 0 :1:5 
+]
+[s S306 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S311 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[s S316 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D 1 0 :1:5 
+]
+[s S321 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 RW 1 0 :1:2 
+`uc 1 START 1 0 :1:3 
+`uc 1 STOP 1 0 :1:4 
+`uc 1 DA 1 0 :1:5 
+]
+[s S327 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 NOT_A 1 0 :1:5 
+]
+[u S332 . 1 `S269 1 . 1 0 `S272 1 . 1 0 `S275 1 . 1 0 `S284 1 . 1 0 `S289 1 . 1 0 `S295 1 . 1 0 `S300 1 . 1 0 `S303 1 . 1 0 `S306 1 . 1 0 `S311 1 . 1 0 `S316 1 . 1 0 `S321 1 . 1 0 `S327 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES332  1 e 1 @4039 ]
+"7186
+[v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
+"7193
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
+[s S24 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 IOFS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+`uc 1 IDLEN 1 0 :1:7 
+]
+"8009
+[s S30 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 FLTS 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S38 . 1 `S24 1 . 1 0 `S30 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES38  1 e 1 @4051 ]
+"55 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\doprnt.c
+[v _flags flags `i  1 s 2 flags ]
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"66
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
+"69
+[v _nout nout `i  1 s 2 nout ]
+"16 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
+[v _Segundo Segundo `ui  1 e 2 0 ]
+"23
+[v _main main `(v  1 e 1 0 ]
+{
+"36
+} 0
+"38
+[v _Print_Menu Print_Menu `(v  1 e 1 0 ]
+{
+"47
+} 0
+"61
+[v _Print_Segundo Print_Segundo `(v  1 e 1 0 ]
+{
+"62
+[v Print_Segundo@sms sms `[10]uc  1 a 10 10 ]
+"65
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
+"25
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
+"7
+[v ___lwdiv@dividend dividend `ui  1 p 2 0 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
+"30
+} 0
+"55 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
+[v _Print_Minuto Print_Minuto `(v  1 e 1 0 ]
+{
+"56
+[v Print_Minuto@sms sms `[10]uc  1 a 10 10 ]
+"59
+} 0
+"49
+[v _Print_Hora Print_Hora `(v  1 e 1 0 ]
+{
+"50
+[v Print_Hora@sms sms `[10]uc  1 a 10 10 ]
+"53
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[s S885 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+"13
+[v sprintf@f f `S885  1 a 6 4 ]
+"12
+[v sprintf@ap ap `[1]*.39v  1 a 2 2 ]
+"9
+[v sprintf@s s `*.39uc  1 p 2 87 ]
+[v sprintf@fmt fmt `*.25Cuc  1 p 2 89 ]
+"23
+} 0
+"1390 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1393
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 85 ]
+[s S911 _IO_FILE 0 ]
+"1390
+[v vfprintf@fp fp `*.39S911  1 p 2 79 ]
+[v vfprintf@fmt fmt `*.25Cuc  1 p 2 81 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 83 ]
+"1404
+} 0
+"692
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+{
+"696
+[v vfpfcnvrt@ll ll `o  1 a 8 71 ]
+[s S911 _IO_FILE 0 ]
+"692
+[v vfpfcnvrt@fp fp `*.39S911  1 p 2 63 ]
+[v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 65 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 67 ]
+"1387
+} 0
+"287
+[v _dtoa dtoa `(i  1 s 2 dtoa ]
+{
+"290
+[v dtoa@n n `o  1 a 8 53 ]
+"289
+[v dtoa@i i `i  1 a 2 61 ]
+[v dtoa@s s `i  1 a 2 51 ]
+[v dtoa@w w `i  1 a 2 49 ]
+[v dtoa@p p `i  1 a 2 47 ]
+[s S911 _IO_FILE 0 ]
+"287
+[v dtoa@fp fp `*.39S911  1 p 2 27 ]
+[v dtoa@d d `o  1 p 8 29 ]
+"328
+} 0
+"72
+[v _pad pad `(i  1 s 2 pad ]
+{
+"74
+[v pad@w w `i  1 a 2 25 ]
+[v pad@i i `i  1 a 2 23 ]
+[s S911 _IO_FILE 0 ]
+"72
+[v pad@fp fp `*.39S911  1 p 2 16 ]
+[v pad@buf buf `*.39uc  1 p 2 18 ]
+[v pad@p p `i  1 p 2 20 ]
+"95
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+{
+"7
+[v strlen@a a `*.39Cuc  1 a 2 2 ]
+"5
+[v strlen@s s `*.39Cuc  1 p 2 0 ]
+"12
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+"11
+[v fputs@i i `i  1 a 2 14 ]
+"10
+[v fputs@c c `uc  1 a 1 13 ]
+"8
+[v fputs@s s `*.39Cuc  1 p 2 9 ]
+[s S885 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputs@fp fp `*.39S885  1 p 2 11 ]
+"19
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 0 ]
+[s S885 _IO_FILE 6 `*.39uc 1 buffer 2 0 `i 1 count 2 2 `i 1 limit 2 4 ]
+[v fputc@fp fp `*.39S885  1 p 2 2 ]
+"24
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+"9
+} 0
+"1 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+{
+[v abs@a a `i  1 p 2 18 ]
+"4
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+{
+"12
+[v ___aomod@sign sign `uc  1 a 1 17 ]
+[v ___aomod@counter counter `uc  1 a 1 16 ]
+"9
+[v ___aomod@dividend dividend `o  1 p 8 0 ]
+[v ___aomod@divisor divisor `o  1 p 8 8 ]
+"36
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+{
+"12
+[v ___aodiv@quotient quotient `o  1 a 8 18 ]
+"13
+[v ___aodiv@sign sign `uc  1 a 1 17 ]
+[v ___aodiv@counter counter `uc  1 a 1 16 ]
+"9
+[v ___aodiv@dividend dividend `o  1 p 8 0 ]
+[v ___aodiv@divisor divisor `o  1 p 8 8 ]
+"43
+} 0
+"102 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\Oled.c
+[v _OLED_SPuts OLED_SPuts `(v  1 e 1 0 ]
+{
+"113
+[v OLED_SPuts@i i `i  1 a 2 20 ]
+"111
+[v OLED_SPuts@xi xi `i  1 a 2 18 ]
+"110
+[v OLED_SPuts@c c `uc  1 a 1 17 ]
+"105
+[v OLED_SPuts@j j `i  1 a 2 22 ]
+"102
+[v OLED_SPuts@x x `ui  1 p 2 7 ]
+[v OLED_SPuts@y y `ui  1 p 2 9 ]
+[v OLED_SPuts@buffer buffer `*.35uc  1 p 2 11 ]
+"122
+} 0
+"74
+[v _OLED_NPuts OLED_NPuts `(v  1 e 1 0 ]
+{
+"82
+[v OLED_NPuts@i i `i  1 a 2 13 ]
+"80
+[v OLED_NPuts@x x `i  1 a 2 11 ]
+"79
+[v OLED_NPuts@c c `uc  1 a 1 10 ]
+"74
+[v OLED_NPuts@buffer buffer `*.25uc  1 p 2 6 ]
+"88
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"13 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\Oled.c
+[v _OLED_Init OLED_Init `(v  1 e 1 0 ]
+{
+"55
+} 0
+"4 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\i2c.c
+[v _I2C_Init I2C_Init `(v  1 e 1 0 ]
+{
+[v I2C_Init@speed speed `uc  1 a 1 wreg ]
+[v I2C_Init@speed speed `uc  1 a 1 wreg ]
+"11
+[v I2C_Init@speed speed `uc  1 a 1 0 ]
+"32
+} 0
+"136 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\Oled.c
+[v _OLEDClear OLEDClear `(v  1 e 1 0 ]
+{
+"141
+[v OLEDClear@i i `i  1 a 2 7 ]
+"145
+} 0
+"57
+[v _OLEDsetCursor OLEDsetCursor `(v  1 e 1 0 ]
+{
+[v OLEDsetCursor@x x `ui  1 p 2 3 ]
+[v OLEDsetCursor@y y `ui  1 p 2 5 ]
+"64
+} 0
+"4
+[v _ssd1306_command ssd1306_command `(v  1 s 1 ssd1306_command ]
+{
+[v ssd1306_command@command command `uc  1 a 1 wreg ]
+[v ssd1306_command@command command `uc  1 a 1 wreg ]
+[v ssd1306_command@command command `uc  1 a 1 1 ]
+"11
+} 0
+"37 C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\i2c.c
+[v _I2C_Start I2C_Start `(v  1 e 1 0 ]
+{
+"44
+} 0
+"88
+[v _I2C_Send I2C_Send `(v  1 e 1 0 ]
+{
+[v I2C_Send@data data `uc  1 a 1 wreg ]
+[v I2C_Send@data data `uc  1 a 1 wreg ]
+"90
+[v I2C_Send@data data `uc  1 a 1 0 ]
+"93
+} 0
+"72
+[v _I2C_Wait I2C_Wait `(v  1 e 1 0 ]
+{
+"82
+} 0
+"61
+[v _I2C_Stop I2C_Stop `(v  1 e 1 0 ]
+{
+"67
+} 0
