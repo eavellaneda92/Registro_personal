@@ -7,6 +7,9 @@
       <itemPath>config.h</itemPath>
       <itemPath>Oled.h</itemPath>
       <itemPath>i2c.h</itemPath>
+      <itemPath>DS32321.h</itemPath>
+      <itemPath>UART.h</itemPath>
+      <itemPath>RC522.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,6 +21,9 @@
       <itemPath>main.c</itemPath>
       <itemPath>Oled.c</itemPath>
       <itemPath>i2c.c</itemPath>
+      <itemPath>DS3231.c</itemPath>
+      <itemPath>UART.c</itemPath>
+      <itemPath>RC522.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

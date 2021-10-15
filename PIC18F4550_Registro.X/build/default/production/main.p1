@@ -18,20 +18,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6581
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6581: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
+"15 ./UART.h
+[; ;./UART.h: 15:     void UART_Init(void);
+[v _UART_Init `(v ~T0 @X0 0 ef ]
+"16
+[; ;./UART.h: 16:     void UART_Begin(unsigned long baud);
+[v _UART_Begin `(v ~T0 @X0 0 ef1`ul ]
+"18
+[; ;./UART.h: 18:     void UART_Println(char *buffer);
+[v _UART_Println `(v ~T0 @X0 0 ef1`*uc ]
 [v F3152 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\pic18.h
 [v __delay `JF3152 ~T0 @X0 0 e ]
 [p i __delay ]
-"18 main.c
-[; ;main.c: 18: void Print_Menu(void);
-[v _Print_Menu `(v ~T0 @X0 0 ef ]
-"21
-[; ;main.c: 21: void Print_Segundo(void);
-[v _Print_Segundo `(v ~T0 @X0 0 ef ]
 "323 ./Oled.h
 [; ;./Oled.h: 323: void OLED_Init(void);
 [v _OLED_Init `(v ~T0 @X0 0 ef ]
-"331
+"30 main.c
+[; ;main.c: 30: void get_RTC(void);
+[v _get_RTC `(v ~T0 @X0 0 ef ]
+"21
+[; ;main.c: 21: void Print_Ticket(void);
+[v _Print_Ticket `(v ~T0 @X0 0 ef ]
+"331 ./Oled.h
 [; ;./Oled.h: 331: void OLEDClear(void);
 [v _OLEDClear `(v ~T0 @X0 0 ef ]
 "327
@@ -43,14 +52,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 "325
 [; ;./Oled.h: 325: void OLED_NPuts(char *buffer);
 [v _OLED_NPuts `(v ~T0 @X0 0 ef1`*uc ]
-"19 main.c
-[; ;main.c: 19: void Print_Hora(void);
+"25 main.c
+[; ;main.c: 25: void Print_Hora(void);
 [v _Print_Hora `(v ~T0 @X0 0 ef ]
-"20
-[; ;main.c: 20: void Print_Minuto(void);
+"26
+[; ;main.c: 26: void Print_Minuto(void);
 [v _Print_Minuto `(v ~T0 @X0 0 ef ]
+"27
+[; ;main.c: 27: void Print_Segundo(void);
+[v _Print_Segundo `(v ~T0 @X0 0 ef ]
 "113 C:\Program Files\Microchip\xc8\v2.31\pic\include\c99\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"15 ./DS32321.h
+[; ;./DS32321.h: 15:     void I2C_Start_DS(void);
+[v _I2C_Start_DS `(v ~T0 @X0 0 ef ]
+"18
+[; ;./DS32321.h: 18:     void I2C_Write_DS(unsigned char i2c_data);
+[v _I2C_Write_DS `(v ~T0 @X0 0 ef1`uc ]
+"16
+[; ;./DS32321.h: 16:     void I2C_Repeated_Start_DS(void);
+[v _I2C_Repeated_Start_DS `(v ~T0 @X0 0 ef ]
+"19
+[; ;./DS32321.h: 19:     unsigned char I2C_Read_DS(unsigned char ack);
+[v _I2C_Read_DS `(uc ~T0 @X0 0 ef1`uc ]
+"17
+[; ;./DS32321.h: 17:     void I2C_Stop_DS(void);
+[v _I2C_Stop_DS `(v ~T0 @X0 0 ef ]
+"19 ./UART.h
+[; ;./UART.h: 19:     void UART_Print(char *buffer);
+[v _UART_Print `(v ~T0 @X0 0 ef1`*uc ]
 "16 ./config.h
 [p x PLLDIV  =  2        ]
 "17
@@ -4595,165 +4625,268 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"14 main.c
-[; ;main.c: 14: unsigned int Hora = 22;
+"16 main.c
+[; ;main.c: 16: unsigned int Hora = 22;
 [v _Hora `ui ~T0 @X0 1 e ]
 [i _Hora
 -> -> 22 `i `ui
 ]
-"15
-[; ;main.c: 15: unsigned int Minuto = 49;
+"17
+[; ;main.c: 17: unsigned int Minuto = 49;
 [v _Minuto `ui ~T0 @X0 1 e ]
 [i _Minuto
 -> -> 49 `i `ui
 ]
-"16
-[; ;main.c: 16: unsigned int Segundo = 1;
+"18
+[; ;main.c: 18: unsigned int Segundo = 1;
 [v _Segundo `ui ~T0 @X0 1 e ]
 [i _Segundo
 -> -> 1 `i `ui
 ]
+"31
+[; ;main.c: 31: unsigned int anio = 20;
+[v _anio `ui ~T0 @X0 1 e ]
+[i _anio
+-> -> 20 `i `ui
+]
+"32
+[; ;main.c: 32: unsigned int mes = 10;
+[v _mes `ui ~T0 @X0 1 e ]
+[i _mes
+-> -> 10 `i `ui
+]
+"33
+[; ;main.c: 33: unsigned int dia = 1;
+[v _dia `ui ~T0 @X0 1 e ]
+[i _dia
+-> -> 1 `i `ui
+]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"23
-[; ;main.c: 23: void main(void) {
+"35
+[; ;main.c: 35: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"24
-[; ;main.c: 24:     OSCCONbits.IRCF = 0b111;
+"36
+[; ;main.c: 36:     OSCCONbits.IRCF = 0b111;
 [e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
-"26
-[; ;main.c: 26:     ADCON1 = 0x0F;
+"38
+[; ;main.c: 38:     ADCON1 = 0x0F;
 [e = _ADCON1 -> -> 15 `i `uc ]
-"27
-[; ;main.c: 27:     _delay((unsigned long)((1500)*(8000000/4000.0)));
+"41
+[; ;main.c: 41:     UART_Init();
+[e ( _UART_Init ..  ]
+"42
+[; ;main.c: 42:     UART_Begin(9600);
+[e ( _UART_Begin (1 -> -> -> 9600 `i `l `ul ]
+"43
+[; ;main.c: 43:     UART_Println("Hola mundo");
+[e ( _UART_Println (1 :s 1C ]
+"44
+[; ;main.c: 44:     _delay((unsigned long)((1500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"28
-[; ;main.c: 28:     Print_Menu();
-[e ( _Print_Menu ..  ]
-"30
-[; ;main.c: 30:     while(1){
+"45
+[; ;main.c: 45:     OLED_Init();
+[e ( _OLED_Init ..  ]
+"47
+[; ;main.c: 47:     while(1){
 [e :U 371 ]
 {
-"31
-[; ;main.c: 31:         Segundo++;
-[e ++ _Segundo -> -> 1 `i `ui ]
-"32
-[; ;main.c: 32:         if(Segundo>=60) Segundo = 0;
-[e $ ! >= _Segundo -> -> 60 `i `ui 373  ]
-[e = _Segundo -> -> 0 `i `ui ]
-[e :U 373 ]
-"33
-[; ;main.c: 33:         Print_Segundo();
-[e ( _Print_Segundo ..  ]
-"34
-[; ;main.c: 34:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+"48
+[; ;main.c: 48:         get_RTC();
+[e ( _get_RTC ..  ]
+"49
+[; ;main.c: 49:         Print_Ticket();
+[e ( _Print_Ticket ..  ]
+"50
+[; ;main.c: 50:         _delay((unsigned long)((1000)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"35
-[; ;main.c: 35:     }
+"51
+[; ;main.c: 51:     }
 }
 [e :U 370 ]
 [e $U 371  ]
 [e :U 372 ]
-"36
-[; ;main.c: 36: }
+"52
+[; ;main.c: 52: }
 [e :UE 369 ]
 }
-"38
-[; ;main.c: 38: void Print_Menu(void){
+"54
+[; ;main.c: 54: void Print_Menu(void){
 [v _Print_Menu `(v ~T0 @X0 1 ef ]
 {
 [e :U _Print_Menu ]
 [f ]
-"39
-[; ;main.c: 39:     OLED_Init();
-[e ( _OLED_Init ..  ]
-"40
-[; ;main.c: 40:     OLEDClear();
+"55
+[; ;main.c: 55:     OLEDClear();
 [e ( _OLEDClear ..  ]
-"41
-[; ;main.c: 41:     OLED_SPuts(0,0,"LECOM");
-[e ( _OLED_SPuts (3 , , -> -> 0 `i `ui -> -> 0 `i `ui :s 1C ]
-"42
-[; ;main.c: 42:     OLEDsetCursor(0,2);
+"56
+[; ;main.c: 56:     OLED_SPuts(0,0,"LECOM");
+[e ( _OLED_SPuts (3 , , -> -> 0 `i `ui -> -> 0 `i `ui :s 2C ]
+"57
+[; ;main.c: 57:     OLEDsetCursor(0,2);
 [e ( _OLEDsetCursor (2 , -> -> 0 `i `ui -> -> 2 `i `ui ]
-"43
-[; ;main.c: 43:     OLED_NPuts("REGISTRO PERSONAL");
-[e ( _OLED_NPuts (1 :s 2C ]
-"44
-[; ;main.c: 44:     Print_Hora();
+"58
+[; ;main.c: 58:     OLED_NPuts("REGISTRO PERSONAL");
+[e ( _OLED_NPuts (1 :s 3C ]
+"59
+[; ;main.c: 59:     Print_Hora();
 [e ( _Print_Hora ..  ]
-"45
-[; ;main.c: 45:     Print_Minuto();
+"60
+[; ;main.c: 60:     Print_Minuto();
 [e ( _Print_Minuto ..  ]
-"46
-[; ;main.c: 46:     Print_Segundo();
+"61
+[; ;main.c: 61:     Print_Segundo();
 [e ( _Print_Segundo ..  ]
-"47
-[; ;main.c: 47: }
-[e :UE 374 ]
+"62
+[; ;main.c: 62: }
+[e :UE 373 ]
 }
-"49
-[; ;main.c: 49: void Print_Hora(void){
+"64
+[; ;main.c: 64: void Print_Hora(void){
 [v _Print_Hora `(v ~T0 @X0 1 ef ]
 {
 [e :U _Print_Hora ]
 [f ]
-"50
-[; ;main.c: 50:     char sms[10];
+"65
+[; ;main.c: 65:     char sms[10];
 [v _sms `uc ~T0 @X0 -> 10 `i a ]
-"51
-[; ;main.c: 51:     sprintf(sms,"%d%d:",Hora/10,Hora%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 3C / _Hora -> -> 10 `i `ui % _Hora -> -> 10 `i `ui ]
-"52
-[; ;main.c: 52:     OLED_SPuts(10,5,sms);
+"66
+[; ;main.c: 66:     sprintf(sms,"%d%d:",Hora/10,Hora%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 4C / _Hora -> -> 10 `i `ui % _Hora -> -> 10 `i `ui ]
+"67
+[; ;main.c: 67:     OLED_SPuts(10,5,sms);
 [e ( _OLED_SPuts (3 , , -> -> 10 `i `ui -> -> 5 `i `ui &U _sms ]
-"53
-[; ;main.c: 53: }
-[e :UE 375 ]
+"68
+[; ;main.c: 68: }
+[e :UE 374 ]
 }
-"55
-[; ;main.c: 55: void Print_Minuto(void){
+"70
+[; ;main.c: 70: void Print_Minuto(void){
 [v _Print_Minuto `(v ~T0 @X0 1 ef ]
 {
 [e :U _Print_Minuto ]
 [f ]
-"56
-[; ;main.c: 56:     char sms[10];
+"71
+[; ;main.c: 71:     char sms[10];
 [v _sms `uc ~T0 @X0 -> 10 `i a ]
-"57
-[; ;main.c: 57:     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 4C / _Minuto -> -> 10 `i `ui % _Minuto -> -> 10 `i `ui ]
-"58
-[; ;main.c: 58:     OLED_SPuts(50,5,sms);
+"72
+[; ;main.c: 72:     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 5C / _Minuto -> -> 10 `i `ui % _Minuto -> -> 10 `i `ui ]
+"73
+[; ;main.c: 73:     OLED_SPuts(50,5,sms);
 [e ( _OLED_SPuts (3 , , -> -> 50 `i `ui -> -> 5 `i `ui &U _sms ]
-"59
-[; ;main.c: 59: }
-[e :UE 376 ]
+"74
+[; ;main.c: 74: }
+[e :UE 375 ]
 }
-"61
-[; ;main.c: 61: void Print_Segundo(void){
+"76
+[; ;main.c: 76: void Print_Segundo(void){
 [v _Print_Segundo `(v ~T0 @X0 1 ef ]
 {
 [e :U _Print_Segundo ]
 [f ]
-"62
-[; ;main.c: 62:     char sms[10];
+"77
+[; ;main.c: 77:     char sms[10];
 [v _sms `uc ~T0 @X0 -> 10 `i a ]
-"63
-[; ;main.c: 63:     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 5C / _Segundo -> -> 10 `i `ui % _Segundo -> -> 10 `i `ui ]
-"64
-[; ;main.c: 64:     OLED_SPuts(90,5,sms);
+"78
+[; ;main.c: 78:     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 6C / _Segundo -> -> 10 `i `ui % _Segundo -> -> 10 `i `ui ]
+"79
+[; ;main.c: 79:     OLED_SPuts(90,5,sms);
 [e ( _OLED_SPuts (3 , , -> -> 90 `i `ui -> -> 5 `i `ui &U _sms ]
-"65
-[; ;main.c: 65: }
+"80
+[; ;main.c: 80: }
+[e :UE 376 ]
+}
+"82
+[; ;main.c: 82: void get_RTC(void){
+[v _get_RTC `(v ~T0 @X0 1 ef ]
+{
+[e :U _get_RTC ]
+[f ]
+"83
+[; ;main.c: 83:     I2C_Start_DS();
+[e ( _I2C_Start_DS ..  ]
+"84
+[; ;main.c: 84:     I2C_Write_DS(0xD0);
+[e ( _I2C_Write_DS (1 -> -> 208 `i `uc ]
+"85
+[; ;main.c: 85:     I2C_Write_DS(0);
+[e ( _I2C_Write_DS (1 -> -> 0 `i `uc ]
+"86
+[; ;main.c: 86:     I2C_Repeated_Start_DS();
+[e ( _I2C_Repeated_Start_DS ..  ]
+"87
+[; ;main.c: 87:     I2C_Write_DS(0xD1);
+[e ( _I2C_Write_DS (1 -> -> 209 `i `uc ]
+"88
+[; ;main.c: 88:     Segundo = I2C_Read_DS(1);
+[e = _Segundo -> ( _I2C_Read_DS (1 -> -> 1 `i `uc `ui ]
+"89
+[; ;main.c: 89:     Minuto = I2C_Read_DS(1);
+[e = _Minuto -> ( _I2C_Read_DS (1 -> -> 1 `i `uc `ui ]
+"90
+[; ;main.c: 90:     Hora = I2C_Read_DS(1);
+[e = _Hora -> ( _I2C_Read_DS (1 -> -> 1 `i `uc `ui ]
+"91
+[; ;main.c: 91:     I2C_Read_DS(1);
+[e ( _I2C_Read_DS (1 -> -> 1 `i `uc ]
+"92
+[; ;main.c: 92:     dia = I2C_Read_DS(1);
+[e = _dia -> ( _I2C_Read_DS (1 -> -> 1 `i `uc `ui ]
+"93
+[; ;main.c: 93:     mes = I2C_Read_DS(1);
+[e = _mes -> ( _I2C_Read_DS (1 -> -> 1 `i `uc `ui ]
+"94
+[; ;main.c: 94:     anio = I2C_Read_DS(0);
+[e = _anio -> ( _I2C_Read_DS (1 -> -> 0 `i `uc `ui ]
+"95
+[; ;main.c: 95:     I2C_Stop_DS();
+[e ( _I2C_Stop_DS ..  ]
+"96
+[; ;main.c: 96: }
 [e :UE 377 ]
 }
+"98
+[; ;main.c: 98: void Print_Ticket(void){
+[v _Print_Ticket `(v ~T0 @X0 1 ef ]
+{
+[e :U _Print_Ticket ]
+[f ]
+"99
+[; ;main.c: 99:     char sms[10];
+[v _sms `uc ~T0 @X0 -> 10 `i a ]
+"100
+[; ;main.c: 100:     sprintf(sms,"%d%d:",Hora/10,Hora%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 7C / _Hora -> -> 10 `i `ui % _Hora -> -> 10 `i `ui ]
+"101
+[; ;main.c: 101:     UART_Print(sms);
+[e ( _UART_Print (1 &U _sms ]
+"102
+[; ;main.c: 102:     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 8C / _Minuto -> -> 10 `i `ui % _Minuto -> -> 10 `i `ui ]
+"103
+[; ;main.c: 103:     UART_Print(sms);
+[e ( _UART_Print (1 &U _sms ]
+"104
+[; ;main.c: 104:     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 9C / _Segundo -> -> 10 `i `ui % _Segundo -> -> 10 `i `ui ]
+"105
+[; ;main.c: 105:     UART_Println(sms);
+[e ( _UART_Println (1 &U _sms ]
+"106
+[; ;main.c: 106: }
+[e :UE 378 ]
+}
 [p f _sprintf 8388736 ]
-[a 5C 37 100 37 100 0 ]
-[a 1C 76 69 67 79 77 0 ]
-[a 2C 82 69 71 73 83 84 82 79 32 80 69 82 83 79 78 65 76 0 ]
-[a 3C 37 100 37 100 58 0 ]
+[a 1C 72 111 108 97 32 109 117 110 100 111 0 ]
+[a 6C 37 100 37 100 0 ]
+[a 9C 37 100 37 100 0 ]
+[a 2C 76 69 67 79 77 0 ]
+[a 3C 82 69 71 73 83 84 82 79 32 80 69 82 83 79 78 65 76 0 ]
 [a 4C 37 100 37 100 58 0 ]
+[a 5C 37 100 37 100 58 0 ]
+[a 7C 37 100 37 100 58 0 ]
+[a 8C 37 100 37 100 58 0 ]

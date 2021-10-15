@@ -9,34 +9,49 @@
 #include "config.h"
 #include "Oled.h"
 #include "stdio.h"
+#include "DS32321.h"
+#include "UART.h"
 
-//ESTRUCTURA DE VARIABLES PARA PANTALLA
+//ESTRUCTURA DE VARIABLES PARA PANTALLA Y RTC
 unsigned int Hora = 22;
 unsigned int Minuto = 49;
 unsigned int Segundo = 1;
 
+//FUNCIONES PARA IMPRESORA
+void Print_Ticket(void);
+
+//FUNCIONES PARA PANTALLA
 void Print_Menu(void);
 void Print_Hora(void);
 void Print_Minuto(void);
 void Print_Segundo(void);
 
+//FUNCIONES PARA RTC
+void get_RTC(void);
+unsigned int anio = 20;
+unsigned int mes = 10;
+unsigned int dia = 1;
+
 void main(void) {
     OSCCONbits.IRCF = 0b111;
     //ANALOGICO/DIGITAL
     ADCON1 = 0x0F;
+    
+    //PUERTO SERIE
+    UART_Init();
+    UART_Begin(9600);
+    UART_Println("Hola mundo");
     __delay_ms(1500);
-    Print_Menu();
+    OLED_Init();
     
     while(1){
-        Segundo++;
-        if(Segundo>=60) Segundo = 0;
-        Print_Segundo();
+        get_RTC();
+        Print_Ticket();
         __delay_ms(1000);
     }
 }
 
 void Print_Menu(void){
-    OLED_Init();
     OLEDClear();
     OLED_SPuts(0,0,"LECOM");
     OLEDsetCursor(0,2);
@@ -62,4 +77,30 @@ void Print_Segundo(void){
     char sms[10];
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     OLED_SPuts(90,5,sms);
+}
+
+void get_RTC(void){
+    I2C_Start_DS();           
+    I2C_Write_DS(0xD0);       
+    I2C_Write_DS(0);          
+    I2C_Repeated_Start_DS();  
+    I2C_Write_DS(0xD1);       
+    Segundo = I2C_Read_DS(1);  
+    Minuto = I2C_Read_DS(1);  
+    Hora   = I2C_Read_DS(1);  
+    I2C_Read_DS(1);           
+    dia  = I2C_Read_DS(1);  
+    mes  = I2C_Read_DS(1);  
+    anio   = I2C_Read_DS(0);  
+    I2C_Stop_DS();            
+}
+
+void Print_Ticket(void){
+    char sms[10];
+    sprintf(sms,"%d%d:",Hora/10,Hora%10);
+    UART_Print(sms);
+    sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
+    UART_Print(sms);
+    sprintf(sms,"%d%d",Segundo/10,Segundo%10);
+    UART_Println(sms);
 }

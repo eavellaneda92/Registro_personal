@@ -316,10 +316,10 @@ void OLED_Init(void){
 
 void OLEDsetCursor(unsigned int x,unsigned int y){
     ssd1306_command(0x21);
-    ssd1306_command(x);
+    ssd1306_command((unsigned char)x);
     ssd1306_command(0x7F);
     ssd1306_command(0x22);
-    ssd1306_command(y);
+    ssd1306_command((unsigned char)y);
     ssd1306_command(0x07);
 }
 
@@ -363,7 +363,8 @@ void OLED_SPuts(unsigned int x,unsigned int y,char *buffer){
     OLEDsetCursor(x,y);
     while(*buffer){
         for(int j=0;j<2;j++){
-            OLEDsetCursor(x,y+j);
+            int valve = (int)y+ j;
+            OLEDsetCursor(x,(unsigned int)valve);
             I2C_Start();
             I2C_Send(0x3C << 1);
             I2C_Send(0x40);
