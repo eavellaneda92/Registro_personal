@@ -12,6 +12,7 @@
 extern "C" {
 #endif
     
+    unsigned long valores[10];
     void UART_Init(void);
     void UART_Begin(unsigned long baud);
     void UART_Write( char data);
