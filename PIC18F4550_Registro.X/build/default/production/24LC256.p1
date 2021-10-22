@@ -1,120 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"5157 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5157:     struct {
-[s S210 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S210 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"5167
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5167:     struct {
-[s S211 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S211 . TX9D1 TRMT1 BRGH1 SENDB1 SYNC1 TXEN1 TX91 CSRC1 ]
-"5177
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5177:     struct {
-[s S212 :6 `uc 1 :1 `uc 1 ]
-[n S212 . . TX8_9 ]
-"5181
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5181:     struct {
-[s S213 :1 `uc 1 ]
-[n S213 . TXD8 ]
-"5156
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5156: typedef union {
-[u S209 `S210 1 `S211 1 `S212 1 `S213 1 ]
-[n S209 . . . . . ]
-"5185
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5185: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0xFAC)));
-[v _TXSTAbits `VS209 ~T0 @X0 0 e@4012 ]
-"4947
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4947:     struct {
-[s S196 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S196 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"4957
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4957:     struct {
-[s S197 :3 `uc 1 :1 `uc 1 ]
-[n S197 . . ADEN ]
-"4961
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4961:     struct {
-[s S198 :5 `uc 1 :1 `uc 1 ]
-[n S198 . . SRENA ]
-"4965
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4965:     struct {
-[s S199 :6 `uc 1 :1 `uc 1 ]
-[n S199 . . RC8_9 ]
-"4969
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4969:     struct {
-[s S200 :6 `uc 1 :1 `uc 1 ]
-[n S200 . . RC9 ]
-"4973
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4973:     struct {
-[s S201 :1 `uc 1 ]
-[n S201 . RCD8 ]
-"4946
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4946: typedef union {
-[u S195 `S196 1 `S197 1 `S198 1 `S199 1 `S200 1 `S201 1 ]
-[n S195 . . . . . . . ]
-"4977
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4977: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0xFAB)));
-[v _RCSTAbits `VS195 ~T0 @X0 0 e@4011 ]
-"6073
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6073:     struct {
-[s S247 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S247 . ABDEN WUE . BRG16 TXCKP RXDTP RCIDL ABDOVF ]
-"6083
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6083:     struct {
-[s S248 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S248 . . SCKP . RCMT ]
-"6089
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6089:     struct {
-[s S249 :5 `uc 1 :1 `uc 1 ]
-[n S249 . . RXCKP ]
-"6093
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6093:     struct {
-[s S250 :1 `uc 1 :1 `uc 1 ]
-[n S250 . . W4E ]
-"6072
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6072: typedef union {
-[u S246 `S247 1 `S248 1 `S249 1 `S250 1 ]
-[n S246 . . . . . ]
-"6098
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 6098: extern volatile BAUDCONbits_t BAUDCONbits __attribute__((address(0xFB8)));
-[v _BAUDCONbits `VS246 ~T0 @X0 0 e@4024 ]
-"4474
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4474:     struct {
-[s S178 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S178 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF SPPIF ]
-"4484
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4484:     struct {
-[s S179 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S179 . . TX1IF RC1IF . PSPIF ]
-"4473
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4473: typedef union {
-[u S177 `S178 1 `S179 1 ]
-[n S177 . . . ]
-"4492
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4492: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
-[v _PIR1bits `VS177 ~T0 @X0 0 e@3998 ]
-"4390
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4390:     struct {
-[s S175 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S175 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
-"4400
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4400:     struct {
-[s S176 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S176 . . TX1IE RC1IE . PSPIE ]
-"4389
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4389: typedef union {
-[u S174 `S175 1 `S176 1 ]
-[n S174 . . . ]
-"4408
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 4408: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
-[v _PIE1bits `VS174 ~T0 @X0 0 e@3997 ]
-"5426
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5426: extern volatile unsigned char SPBRG __attribute__((address(0xFAF)));
-[v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
-"5402
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 5402: extern volatile unsigned char TXREG __attribute__((address(0xFAD)));
-[v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
-"15 ./UART.h
-[; ;./UART.h: 15:     unsigned long valores[10];
-[v _valores `ul ~T0 @X0 -> 10 `i e ]
+"14 ./i2c.h
+[; ;./i2c.h: 14: void I2C_Start( void );
+[v _I2C_Start `(v ~T0 @X0 0 ef ]
+"18
+[; ;./i2c.h: 18: void I2C_Send( unsigned char data );
+[v _I2C_Send `(v ~T0 @X0 0 ef1`uc ]
+"16
+[; ;./i2c.h: 16: void I2C_Stop( void );
+[v _I2C_Stop `(v ~T0 @X0 0 ef ]
+[v F3166 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\pic18.h
+[v __delay `JF3166 ~T0 @X0 0 e ]
+[p i __delay ]
+"15 ./i2c.h
+[; ;./i2c.h: 15: void I2C_Restart( void );
+[v _I2C_Restart `(v ~T0 @X0 0 ef ]
+"19
+[; ;./i2c.h: 19: unsigned char I2C_Read ( void );
+[v _I2C_Read `(uc ~T0 @X0 0 ef ]
 "16 ./config.h
 [p x PLLDIV  =  2        ]
 "17
@@ -701,212 +604,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8893
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h: 8893: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"4 UART.c
-[; ;UART.c: 4: void UART_Init(void){
-[v _UART_Init `(v ~T0 @X0 1 ef ]
-{
-[e :U _UART_Init ]
-[f ]
-"6
-[; ;UART.c: 6:     TXSTAbits.SYNC = 0;
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"7
-[; ;UART.c: 7:     TXSTAbits.TXEN = 1;
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"8
-[; ;UART.c: 8:     TXSTAbits.TX9 = 0;
-[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
+"7 24LC256.c
+[v _add `ui ~T0 @X0 1 e ]
+[i _add
+-> -> 161 `i `ui
+]
+"9
+[v _EEPROM_Write `(v ~T0 @X0 1 ef2`ui`uc ]
 "10
-[; ;UART.c: 10:     RCSTAbits.SPEN = 1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+{
+[e :U _EEPROM_Write ]
+"9
+[v _add `ui ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+"10
+[f ]
 "11
-[; ;UART.c: 11:     RCSTAbits.RX9 = 0;
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+[e ( _I2C_Start ..  ]
 "12
-[; ;UART.c: 12:     RCSTAbits.CREN = 1;
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[e ( _I2C_Send (1 -> -> 160 `i `uc ]
+"13
+[e ( _I2C_Send (1 -> >> _add -> 8 `i `uc ]
 "14
-[; ;UART.c: 14:     TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[e ( _I2C_Send (1 -> _add `uc ]
 "15
-[; ;UART.c: 15:     BAUDCONbits.BRG16 = 0;
-[e = . . _BAUDCONbits 0 3 -> -> 0 `i `uc ]
+[e ( _I2C_Send (1 _data ]
 "16
-[; ;UART.c: 16:     PIR1bits.RCIF = 0;
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+[e ( _I2C_Stop ..  ]
 "17
-[; ;UART.c: 17:     PIE1bits.RCIE = 1;
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "18
-[; ;UART.c: 18: }
 [e :UE 367 ]
 }
 "20
-[; ;UART.c: 20: void UART_Begin(unsigned long baud){
-[v _UART_Begin `(v ~T0 @X0 1 ef1`ul ]
-{
-[e :U _UART_Begin ]
-[v _baud `ul ~T0 @X0 1 r1 ]
-[f ]
+[v _EEPROM_Read `(uc ~T0 @X0 1 ef1`ui ]
 "21
-[; ;UART.c: 21:     double aux = 8000000;
-[v _aux `d ~T0 @X0 1 a ]
-[e = _aux -> -> 8000000 `l `d ]
+{
+[e :U _EEPROM_Read ]
+"20
+[v _add `ui ~T0 @X0 1 r1 ]
+"21
+[f ]
 "22
-[; ;UART.c: 22:     double aux2 = baud;
-[v _aux2 `d ~T0 @X0 1 a ]
-[e = _aux2 -> _baud `d ]
+[e ( _I2C_Start ..  ]
 "23
-[; ;UART.c: 23:     aux = aux / aux2;
-[e = _aux / _aux _aux2 ]
+[e ( _I2C_Send (1 -> -> 160 `i `uc ]
 "24
-[; ;UART.c: 24:     if(baud <= 19200){
-[e $ ! <= _baud -> -> -> 19200 `i `l `ul 369  ]
-{
+[e ( _I2C_Send (1 -> >> _add -> 8 `i `uc ]
 "25
-[; ;UART.c: 25:         TXSTAbits.BRGH = 0;
-[e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
+[e ( _I2C_Send (1 -> _add `uc ]
 "26
-[; ;UART.c: 26:         aux = aux / 64.0;
-[e = _aux / _aux .64.0 ]
+[e ( _I2C_Restart ..  ]
 "27
-[; ;UART.c: 27:     }else{
-}
-[e $U 370  ]
-[e :U 369 ]
-{
+[e ( _I2C_Send (1 -> -> 161 `i `uc ]
 "28
-[; ;UART.c: 28:         TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[v _temp `uc ~T0 @X0 1 a ]
 "29
-[; ;UART.c: 29:         aux = aux / 16.0;
-[e = _aux / _aux .16.0 ]
+[e = _temp ( _I2C_Read ..  ]
 "30
-[; ;UART.c: 30:     }
-}
-[e :U 370 ]
+[e ) _temp ]
+[e $UE 368  ]
 "31
-[; ;UART.c: 31:     aux = aux - 1.0;
-[e = _aux - _aux .1.0 ]
-"32
-[; ;UART.c: 32:     baud = (unsigned long)aux;
-[e = _baud -> _aux `ul ]
-"33
-[; ;UART.c: 33:     if(aux - baud >= 0.5){
-[e $ ! >= - _aux -> _baud `d .0.5 371  ]
-{
-"34
-[; ;UART.c: 34:         baud++;
-[e ++ _baud -> -> -> 1 `i `l `ul ]
-"35
-[; ;UART.c: 35:     }
-}
-[e :U 371 ]
-"36
-[; ;UART.c: 36:     SPBRG = (unsigned char)baud;
-[e = _SPBRG -> _baud `uc ]
-"37
-[; ;UART.c: 37: }
 [e :UE 368 ]
-}
-"39
-[; ;UART.c: 39: void UART_Write( char data){
-[v _UART_Write `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _UART_Write ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"40
-[; ;UART.c: 40:     TXREG=data;
-[e = _TXREG -> _data `uc ]
-"41
-[; ;UART.c: 41:     while(!TXSTAbits.TRMT);
-[e $U 373  ]
-[e :U 374 ]
-[e :U 373 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> 0 `i 374  ]
-[e :U 375 ]
-"42
-[; ;UART.c: 42: }
-[e :UE 372 ]
-}
-"44
-[; ;UART.c: 44: void UART_Println(char *buffer){
-[v _UART_Println `(v ~T0 @X0 1 ef1`*uc ]
-{
-[e :U _UART_Println ]
-[v _buffer `*uc ~T0 @X0 1 r1 ]
-[f ]
-"45
-[; ;UART.c: 45:     while(*buffer){
-[e $U 377  ]
-[e :U 378 ]
-{
-"46
-[; ;UART.c: 46:         UART_Write(*buffer);
-[e ( _UART_Write (1 *U _buffer ]
-"47
-[; ;UART.c: 47:         buffer++;
-[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"48
-[; ;UART.c: 48:     }
-}
-[e :U 377 ]
-"45
-[; ;UART.c: 45:     while(*buffer){
-[e $ != -> *U _buffer `i -> 0 `i 378  ]
-[e :U 379 ]
-"49
-[; ;UART.c: 49:     TXREG=10;
-[e = _TXREG -> -> 10 `i `uc ]
-"50
-[; ;UART.c: 50:     while(!TXSTAbits.TRMT);
-[e $U 380  ]
-[e :U 381 ]
-[e :U 380 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> 0 `i 381  ]
-[e :U 382 ]
-"51
-[; ;UART.c: 51:     TXREG=13;
-[e = _TXREG -> -> 13 `i `uc ]
-"52
-[; ;UART.c: 52:     while(!TXSTAbits.TRMT);
-[e $U 383  ]
-[e :U 384 ]
-[e :U 383 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> 0 `i 384  ]
-[e :U 385 ]
-"53
-[; ;UART.c: 53: }
-[e :UE 376 ]
-}
-"55
-[; ;UART.c: 55: void UART_Print(char *buffer){
-[v _UART_Print `(v ~T0 @X0 1 ef1`*uc ]
-{
-[e :U _UART_Print ]
-[v _buffer `*uc ~T0 @X0 1 r1 ]
-[f ]
-"56
-[; ;UART.c: 56:     while(*buffer){
-[e $U 387  ]
-[e :U 388 ]
-{
-"57
-[; ;UART.c: 57:         UART_Write(*buffer);
-[e ( _UART_Write (1 *U _buffer ]
-"58
-[; ;UART.c: 58:         buffer++;
-[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"59
-[; ;UART.c: 59:     }
-}
-[e :U 387 ]
-"56
-[; ;UART.c: 56:     while(*buffer){
-[e $ != -> *U _buffer `i -> 0 `i 388  ]
-[e :U 389 ]
-"60
-[; ;UART.c: 60: }
-[e :UE 386 ]
 }

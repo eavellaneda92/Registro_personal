@@ -5,20 +5,29 @@
  * Created on 14 de octubre de 2021, 22:38
  */
 
-
 #include "config.h"
 #include "Oled.h"
 #include "stdio.h"
 #include "DS32321.h"
 #include "UART.h"
+#include "Timer1.h"
+#include "RC522.h"
+char UID[10];                                   
+char *TagType; 
+
+#include "24lc256.h"
 
 //ESTRUCTURA DE VARIABLES PARA PANTALLA Y RTC
-unsigned int Hora = 22;
-unsigned int Minuto = 49;
-unsigned int Segundo = 1;
+unsigned char Hora = 22;
+unsigned char Minuto = 49;
+unsigned char Segundo = 1;
+unsigned char anio = 20;
+unsigned char mes = 10;
+unsigned char dia = 1;
 
-//FUNCIONES PARA IMPRESORA
+//FUNCIONES PARA IMPRESORA Y RC622
 void Print_Ticket(void);
+void CHECK_TAG(void);
 
 //FUNCIONES PARA PANTALLA
 void Print_Menu(void);
@@ -26,37 +35,62 @@ void Print_Hora(void);
 void Print_Minuto(void);
 void Print_Segundo(void);
 
-//FUNCIONES PARA RTC
+//FUNCIONES Y VARIABLES PARA fu RTC
 void set_RTC(void);
 void get_RTC(void);
 unsigned char bcd_to_decimal(unsigned char number);
 unsigned char decimal_to_bcd(unsigned char number);
-unsigned int anio = 20;
-unsigned int mes = 10;
-unsigned int dia = 1;
+unsigned int contador_t1 = 0;
+char flag_t1 = 0;
+
+void __interrupt() scr(){
+    if(PIR1bits.TMR1IF){
+        contador_t1++;
+        if(contador_t1>=2){ //aprox 40ms 
+            flag_t1 = 1;
+            contador_t1 = 0;
+        }
+        TMR1 = 5553;
+        PIR1bits.TMR1IF = 0;
+    }
+}
 
 void main(void) {
     OSCCONbits.IRCF = 0b111;
     //ANALOGICO/DIGITAL
     ADCON1 = 0x0F;
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    
+    //TIMER 1
+    Timer1_Init();
     
     //PUERTO SERIE
     UART_Init();
     UART_Begin(9600);
     UART_Println("Hola mundo");
-    __delay_ms(1500);
+    //__delay_ms(1500);
     OLED_Init();
     set_RTC();
+    if(EEPROM_Read(1) != 22){
+        
+    }
+    UART_Write(EEPROM_Read(0x10));
     while(1){
-        get_RTC();
-        Print_Ticket();
-        __delay_ms(1000);
+        //Espera de tiempo para leer tiempo
+        if(flag_t1){
+            get_RTC();
+            Print_Ticket();
+            flag_t1 = 0;
+        }
+        //Lectura de TARJETE
+        //CHECK_TAG();
     }
 }
 
 void Print_Menu(void){
     OLEDClear();
-    OLED_SPuts(0,0,"LECOM");
+    OLED_SPuts(0,0,"LECOMPERU");
     OLEDsetCursor(0,2);
     OLED_NPuts("REGISTRO PERSONAL");
     Print_Hora();
@@ -90,16 +124,15 @@ void get_RTC(void){
     I2C_Write_DS(0xD1);       
     Segundo = I2C_Read_DS(1);  
     Minuto = I2C_Read_DS(1);  
-    Hora   = I2C_Read_DS(1);  
+    Hora = I2C_Read_DS(1);  
     I2C_Read_DS(1);           
-    dia  = I2C_Read_DS(1);  
-    mes  = I2C_Read_DS(1);  
-    anio   = I2C_Read_DS(0);  
+    dia = I2C_Read_DS(1);  
+    mes = I2C_Read_DS(1);  
+    anio = I2C_Read_DS(0);  
     I2C_Stop_DS();            
 }
 
 void set_RTC(void){
-      
       Hora = decimal_to_bcd(Hora);
       Minuto = decimal_to_bcd(Minuto);
       Segundo = decimal_to_bcd(Segundo);
@@ -118,7 +151,8 @@ void set_RTC(void){
       I2C_Write_DS(dia);    
       I2C_Write_DS(mes);    
       I2C_Write_DS(anio);    
-      I2C_Stop_DS();          
+      I2C_Stop_DS();   
+      __delay_ms(6);
 }
 
 void Print_Ticket(void){
@@ -139,5 +173,22 @@ unsigned char bcd_to_decimal(unsigned char number) {
 }
  
 unsigned char decimal_to_bcd(unsigned char number) {
-  return(((number / 10) << 4) + (number % 10));
+  return((unsigned char)(((number / 10) << 4) + (number % 10)));
+}
+
+void CHECK_TAG(void){
+   if(MFRC522_isCard(TagType)){              // Verificacion si hay un tag disponible
+      if(MFRC522_ReadCardSerial(UID)){       // Lectura y verificacion si encontro algun tag
+         UART_Println("ID: ");
+         int i = 0;
+         char buf[20];
+         for(i=0; i<5; i++){                  // Imprime la ID en la pantalla LCD
+            sprintf(buf, "%d ", UID[i]);
+            UART_Println(buf);
+         }       
+         UART_Println("PASA PROCESO 3");
+         MFRC522_Clear_UID(UID);             // Limpia temporalmente la ID
+      }
+      MFRC522_Halt();                        // Apaga la antena
+   }
 }

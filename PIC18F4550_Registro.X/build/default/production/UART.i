@@ -9,6 +9,7 @@
 # 1 "UART.c" 2
 # 1 "./UART.h" 1
 # 15 "./UART.h"
+    unsigned long valores[10];
     void UART_Init(void);
     void UART_Begin(unsigned long baud);
     void UART_Write( char data);

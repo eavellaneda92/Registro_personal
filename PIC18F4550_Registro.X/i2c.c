@@ -111,3 +111,4 @@ unsigned char I2C_Read( void )
   I2C_Stop();
   return temp;                  /* Return the read data from bus */
 }
+
