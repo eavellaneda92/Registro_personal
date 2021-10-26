@@ -11,10 +11,6 @@
 
 char FOUNT = 0;
 
-const unsigned char SMALL_FONTS[];
-const unsigned char TINY_FONTS[];
-const unsigned char BIG_FONTS[];
-
 #define LEFT                  0
 #define RIGHT                 254
 #define CENTER                255

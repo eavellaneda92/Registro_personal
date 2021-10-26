@@ -17,29 +17,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _FOUNT
 -> -> 0 `i `uc
 ]
-"14
-[; ;./Oled.h: 14: const unsigned char SMALL_FONTS[];
-[v _SMALL_FONTS `Cuc ~T0 @X0 -> -> 0 `i `ux e ]
-[i _SMALL_FONTS
-:U ..
-..
-]
-"15
-[; ;./Oled.h: 15: const unsigned char TINY_FONTS[];
-[v _TINY_FONTS `Cuc ~T0 @X0 -> -> 0 `i `ux e ]
-[i _TINY_FONTS
-:U ..
-..
-]
-"16
-[; ;./Oled.h: 16: const unsigned char BIG_FONTS[];
-[v _BIG_FONTS `Cuc ~T0 @X0 -> -> 0 `i `ux e ]
-[i _BIG_FONTS
-:U ..
-..
-]
-"93
-[; ;./Oled.h: 93: const unsigned char SMALL_FONTS[] ={
+"89
+[; ;./Oled.h: 89: const unsigned char SMALL_FONTS[] ={
 [v _SMALL_FONTS `Cuc ~T0 @X0 -> 570 `i e ]
 [i _SMALL_FONTS
 :U ..
@@ -615,8 +594,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 6 `i `uc
 ..
 ]
-"196
-[; ;./Oled.h: 196: const unsigned char TINY_FONTS[] =
+"192
+[; ;./Oled.h: 192: const unsigned char TINY_FONTS[] =
 [v _TINY_FONTS `Cuc ~T0 @X0 -> 285 `i e ]
 [i _TINY_FONTS
 :U ..
@@ -907,8 +886,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"212
-[; ;./Oled.h: 212: const unsigned char BIG_FONTS[] = {
+"208
+[; ;./Oled.h: 208: const unsigned char BIG_FONTS[] = {
 [v _BIG_FONTS `Cuc ~T0 @X0 -> 3040 `i e ]
 [i _BIG_FONTS
 :U ..
@@ -3954,8 +3933,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"316
-[; ;./Oled.h: 316: const unsigned char barras[8] = {
+"312
+[; ;./Oled.h: 312: const unsigned char barras[8] = {
 [v _barras `Cuc ~T0 @X0 -> 8 `i e ]
 [i _barras
 :U ..
@@ -4124,11 +4103,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 3 ]
 }
 "66
-[; ;Oled.c: 66: void OLED_Write(char dato){
-[v _OLED_Write `(v ~T0 @X0 1 ef1`uc ]
+[; ;Oled.c: 66: void OLED_NPuts(char *buffer){
+[v _OLED_NPuts `(v ~T0 @X0 1 ef1`*uc ]
 {
-[e :U _OLED_Write ]
-[v _dato `uc ~T0 @X0 1 r1 ]
+[e :U _OLED_NPuts ]
+[v _buffer `*uc ~T0 @X0 1 r1 ]
 [f ]
 "67
 [; ;Oled.c: 67:     I2C_Start();
@@ -4140,135 +4119,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Oled.c: 69:     I2C_Send(0x40);
 [e ( _I2C_Send (1 -> -> 64 `i `uc ]
 "70
-[; ;Oled.c: 70:     I2C_Send(dato);
-[e ( _I2C_Send (1 -> _dato `uc ]
+[; ;Oled.c: 70:     while(*buffer){
+[e $U 5  ]
+[e :U 6 ]
+{
 "71
-[; ;Oled.c: 71:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"72
-[; ;Oled.c: 72: }
-[e :UE 4 ]
-}
-"74
-[; ;Oled.c: 74: void OLED_NPuts(char *buffer){
-[v _OLED_NPuts `(v ~T0 @X0 1 ef1`*uc ]
-{
-[e :U _OLED_NPuts ]
-[v _buffer `*uc ~T0 @X0 1 r1 ]
-[f ]
-"75
-[; ;Oled.c: 75:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"76
-[; ;Oled.c: 76:     I2C_Send(0x3C << 1);
-[e ( _I2C_Send (1 -> << -> 60 `i -> 1 `i `uc ]
-"77
-[; ;Oled.c: 77:     I2C_Send(0x40);
-[e ( _I2C_Send (1 -> -> 64 `i `uc ]
-"78
-[; ;Oled.c: 78:     while(*buffer){
-[e $U 6  ]
-[e :U 7 ]
-{
-"79
-[; ;Oled.c: 79:         char c = *buffer;
+[; ;Oled.c: 71:         char c = *buffer;
 [v _c `uc ~T0 @X0 1 a ]
 [e = _c *U _buffer ]
-"80
-[; ;Oled.c: 80:         int x = c - 32;
+"72
+[; ;Oled.c: 72:         int x = c - 32;
 [v _x `i ~T0 @X0 1 a ]
 [e = _x - -> _c `i -> 32 `i ]
-"81
-[; ;Oled.c: 81:         x=x*6;
+"73
+[; ;Oled.c: 73:         x=x*6;
 [e = _x * _x -> 6 `i ]
-"82
-[; ;Oled.c: 82:         for(int i=0;i<6;i++){
+"74
+[; ;Oled.c: 74:         for(int i=0;i<6;i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 6 `i 9  ]
-[e $U 10  ]
-[e :U 9 ]
-{
-"83
-[; ;Oled.c: 83:             I2C_Send(SMALL_FONTS[x+i]);
-[e ( _I2C_Send (1 *U + &U _SMALL_FONTS * -> -> + _x _i `ui `ux -> -> # *U &U _SMALL_FONTS `ui `ux ]
-"84
-[; ;Oled.c: 84:         }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 6 `i 9  ]
-[e :U 10 ]
-}
-"85
-[; ;Oled.c: 85:         buffer++;
-[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"86
-[; ;Oled.c: 86:     }
-}
-[e :U 6 ]
-"78
-[; ;Oled.c: 78:     while(*buffer){
-[e $ != -> *U _buffer `i -> 0 `i 7  ]
+[e $ < _i -> 6 `i 8  ]
+[e $U 9  ]
 [e :U 8 ]
-"87
-[; ;Oled.c: 87:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"88
-[; ;Oled.c: 88: }
-[e :UE 5 ]
-}
-"90
-[; ;Oled.c: 90: void OLED_NPut(char buffer){
-[v _OLED_NPut `(v ~T0 @X0 1 ef1`uc ]
 {
-[e :U _OLED_NPut ]
-[v _buffer `uc ~T0 @X0 1 r1 ]
-[f ]
-"91
-[; ;Oled.c: 91:     int x = buffer - 32;
-[v _x `i ~T0 @X0 1 a ]
-[e = _x - -> _buffer `i -> 32 `i ]
-"92
-[; ;Oled.c: 92:     x=x*6;
-[e = _x * _x -> 6 `i ]
-"93
-[; ;Oled.c: 93:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"94
-[; ;Oled.c: 94:     I2C_Send(0x3C << 1);
-[e ( _I2C_Send (1 -> << -> 60 `i -> 1 `i `uc ]
-"95
-[; ;Oled.c: 95:     I2C_Send(0x40);
-[e ( _I2C_Send (1 -> -> 64 `i `uc ]
-"96
-[; ;Oled.c: 96:     for(int i=0;i<6;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 6 `i 13  ]
-[e $U 14  ]
-[e :U 13 ]
-{
-"97
-[; ;Oled.c: 97:         I2C_Send(SMALL_FONTS[x+i]);
+"75
+[; ;Oled.c: 75:             I2C_Send(SMALL_FONTS[x+i]);
 [e ( _I2C_Send (1 *U + &U _SMALL_FONTS * -> -> + _x _i `ui `ux -> -> # *U &U _SMALL_FONTS `ui `ux ]
-"98
-[; ;Oled.c: 98:     }
+"76
+[; ;Oled.c: 76:         }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 6 `i 13  ]
-[e :U 14 ]
+[e $ < _i -> 6 `i 8  ]
+[e :U 9 ]
 }
-"99
-[; ;Oled.c: 99:     I2C_Stop();
+"77
+[; ;Oled.c: 77:         buffer++;
+[e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
+"78
+[; ;Oled.c: 78:     }
+}
+[e :U 5 ]
+"70
+[; ;Oled.c: 70:     while(*buffer){
+[e $ != -> *U _buffer `i -> 0 `i 6  ]
+[e :U 7 ]
+"79
+[; ;Oled.c: 79:     I2C_Stop();
 [e ( _I2C_Stop ..  ]
-"100
-[; ;Oled.c: 100: }
-[e :UE 12 ]
+"80
+[; ;Oled.c: 80: }
+[e :UE 4 ]
 }
-"102
-[; ;Oled.c: 102: void OLED_SPuts(unsigned int x,unsigned int y,char *buffer){
+"82
+[; ;Oled.c: 82: void OLED_SPuts(unsigned int x,unsigned int y,char *buffer){
 [v _OLED_SPuts `(v ~T0 @X0 1 ef3`ui`ui`*uc ]
 {
 [e :U _OLED_SPuts ]
@@ -4276,189 +4180,138 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _y `ui ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
 [f ]
-"103
-[; ;Oled.c: 103:     OLEDsetCursor(x,y);
+"83
+[; ;Oled.c: 83:     OLEDsetCursor(x,y);
 [e ( _OLEDsetCursor (2 , _x _y ]
-"104
-[; ;Oled.c: 104:     while(*buffer){
-[e $U 17  ]
-[e :U 18 ]
+"84
+[; ;Oled.c: 84:     while(*buffer){
+[e $U 12  ]
+[e :U 13 ]
 {
-"105
-[; ;Oled.c: 105:         for(int j=0;j<2;j++){
+"85
+[; ;Oled.c: 85:         for(int j=0;j<2;j++){
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[e $ < _j -> 2 `i 20  ]
-[e $U 21  ]
-[e :U 20 ]
+[e $ < _j -> 2 `i 15  ]
+[e $U 16  ]
+[e :U 15 ]
 {
-"106
-[; ;Oled.c: 106:             int valve = (int)y+ j;
+"86
+[; ;Oled.c: 86:             int valve = (int)y+ j;
 [v _valve `i ~T0 @X0 1 a ]
 [e = _valve + -> _y `i _j ]
-"107
-[; ;Oled.c: 107:             OLEDsetCursor(x,(unsigned int)valve);
+"87
+[; ;Oled.c: 87:             OLEDsetCursor(x,(unsigned int)valve);
 [e ( _OLEDsetCursor (2 , _x -> _valve `ui ]
-"108
-[; ;Oled.c: 108:             I2C_Start();
+"88
+[; ;Oled.c: 88:             I2C_Start();
 [e ( _I2C_Start ..  ]
-"109
-[; ;Oled.c: 109:             I2C_Send(0x3C << 1);
+"89
+[; ;Oled.c: 89:             I2C_Send(0x3C << 1);
 [e ( _I2C_Send (1 -> << -> 60 `i -> 1 `i `uc ]
-"110
-[; ;Oled.c: 110:             I2C_Send(0x40);
+"90
+[; ;Oled.c: 90:             I2C_Send(0x40);
 [e ( _I2C_Send (1 -> -> 64 `i `uc ]
-"111
-[; ;Oled.c: 111:             char c = *buffer;
+"91
+[; ;Oled.c: 91:             char c = *buffer;
 [v _c `uc ~T0 @X0 1 a ]
 [e = _c *U _buffer ]
-"112
-[; ;Oled.c: 112:             int xi = c - 32;
+"92
+[; ;Oled.c: 92:             int xi = c - 32;
 [v _xi `i ~T0 @X0 1 a ]
 [e = _xi - -> _c `i -> 32 `i ]
-"113
-[; ;Oled.c: 113:             xi=xi*32 + (16*j);
+"93
+[; ;Oled.c: 93:             xi=xi*32 + (16*j);
 [e = _xi + * _xi -> 32 `i * -> 16 `i _j ]
-"114
-[; ;Oled.c: 114:             for(int i=0;i<16;i++){
+"94
+[; ;Oled.c: 94:             for(int i=0;i<16;i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 16 `i 23  ]
-[e $U 24  ]
-[e :U 23 ]
+[e $ < _i -> 16 `i 18  ]
+[e $U 19  ]
+[e :U 18 ]
 {
-"115
-[; ;Oled.c: 115:                 I2C_Send(BIG_FONTS[xi+i]);
+"95
+[; ;Oled.c: 95:                 I2C_Send(BIG_FONTS[xi+i]);
 [e ( _I2C_Send (1 *U + &U _BIG_FONTS * -> -> + _xi _i `ui `ux -> -> # *U &U _BIG_FONTS `ui `ux ]
-"116
-[; ;Oled.c: 116:             }
+"96
+[; ;Oled.c: 96:             }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 16 `i 23  ]
-[e :U 24 ]
+[e $ < _i -> 16 `i 18  ]
+[e :U 19 ]
 }
-"117
-[; ;Oled.c: 117:             I2C_Stop();
+"97
+[; ;Oled.c: 97:             I2C_Stop();
 [e ( _I2C_Stop ..  ]
-"118
-[; ;Oled.c: 118:         }
+"98
+[; ;Oled.c: 98:         }
 }
 [e ++ _j -> 1 `i ]
-[e $ < _j -> 2 `i 20  ]
-[e :U 21 ]
+[e $ < _j -> 2 `i 15  ]
+[e :U 16 ]
 }
-"119
-[; ;Oled.c: 119:         x+=13;
+"99
+[; ;Oled.c: 99:         x+=13;
 [e =+ _x -> -> 13 `i `ui ]
-"120
-[; ;Oled.c: 120:         buffer++;
+"100
+[; ;Oled.c: 100:         buffer++;
 [e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"121
-[; ;Oled.c: 121:     }
+"101
+[; ;Oled.c: 101:     }
 }
-[e :U 17 ]
-"104
-[; ;Oled.c: 104:     while(*buffer){
-[e $ != -> *U _buffer `i -> 0 `i 18  ]
-[e :U 19 ]
-"123
-[; ;Oled.c: 123: }
-[e :UE 16 ]
+[e :U 12 ]
+"84
+[; ;Oled.c: 84:     while(*buffer){
+[e $ != -> *U _buffer `i -> 0 `i 13  ]
+[e :U 14 ]
+"103
+[; ;Oled.c: 103: }
+[e :UE 11 ]
 }
-"125
-[; ;Oled.c: 125: void OLED_SPut(unsigned int x,unsigned int y,char buffer){
-[v _OLED_SPut `(v ~T0 @X0 1 ef3`ui`ui`uc ]
-{
-[e :U _OLED_SPut ]
-[v _x `ui ~T0 @X0 1 r1 ]
-[v _y `ui ~T0 @X0 1 r2 ]
-[v _buffer `uc ~T0 @X0 1 r3 ]
-[f ]
-"126
-[; ;Oled.c: 126:     int xi = buffer - 32;
-[v _xi `i ~T0 @X0 1 a ]
-[e = _xi - -> _buffer `i -> 32 `i ]
-"127
-[; ;Oled.c: 127:     xi=xi*3;
-[e = _xi * _xi -> 3 `i ]
-"128
-[; ;Oled.c: 128:     I2C_Start();
-[e ( _I2C_Start ..  ]
-"129
-[; ;Oled.c: 129:     I2C_Send(0x3C << 1);
-[e ( _I2C_Send (1 -> << -> 60 `i -> 1 `i `uc ]
-"130
-[; ;Oled.c: 130:     I2C_Send(0x40);
-[e ( _I2C_Send (1 -> -> 64 `i `uc ]
-"131
-[; ;Oled.c: 131:     for(int i=0;i<3;i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 3 `i 27  ]
-[e $U 28  ]
-[e :U 27 ]
-{
-"132
-[; ;Oled.c: 132:         I2C_Send(TINY_FONTS[xi+i]);
-[e ( _I2C_Send (1 *U + &U _TINY_FONTS * -> -> + _xi _i `ui `ux -> -> # *U &U _TINY_FONTS `ui `ux ]
-"133
-[; ;Oled.c: 133:     }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 3 `i 27  ]
-[e :U 28 ]
-}
-"134
-[; ;Oled.c: 134:     I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"135
-[; ;Oled.c: 135: }
-[e :UE 26 ]
-}
-"137
-[; ;Oled.c: 137: void OLEDClear(void){
+"105
+[; ;Oled.c: 105: void OLEDClear(void){
 [v _OLEDClear `(v ~T0 @X0 1 ef ]
 {
 [e :U _OLEDClear ]
 [f ]
-"138
-[; ;Oled.c: 138:     OLEDsetCursor(0,0);
+"106
+[; ;Oled.c: 106:     OLEDsetCursor(0,0);
 [e ( _OLEDsetCursor (2 , -> -> 0 `i `ui -> -> 0 `i `ui ]
-"139
-[; ;Oled.c: 139:     I2C_Start();
+"107
+[; ;Oled.c: 107:     I2C_Start();
 [e ( _I2C_Start ..  ]
-"140
-[; ;Oled.c: 140:     I2C_Send(0x3C << 1);
+"108
+[; ;Oled.c: 108:     I2C_Send(0x3C << 1);
 [e ( _I2C_Send (1 -> << -> 60 `i -> 1 `i `uc ]
-"141
-[; ;Oled.c: 141:     I2C_Send(0x40);
+"109
+[; ;Oled.c: 109:     I2C_Send(0x40);
 [e ( _I2C_Send (1 -> -> 64 `i `uc ]
-"142
-[; ;Oled.c: 142:     for(int i = 0; i < 1024; i++){
+"110
+[; ;Oled.c: 110:     for(int i = 0; i < 1024; i++){
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 1024 `i 31  ]
-[e $U 32  ]
-[e :U 31 ]
+[e $ < _i -> 1024 `i 22  ]
+[e $U 23  ]
+[e :U 22 ]
 {
-"143
-[; ;Oled.c: 143:         I2C_Send(0);
+"111
+[; ;Oled.c: 111:         I2C_Send(0);
 [e ( _I2C_Send (1 -> -> 0 `i `uc ]
-"144
-[; ;Oled.c: 144:     }
+"112
+[; ;Oled.c: 112:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 1024 `i 31  ]
-[e :U 32 ]
+[e $ < _i -> 1024 `i 22  ]
+[e :U 23 ]
 }
-"145
-[; ;Oled.c: 145:     I2C_Stop();
+"113
+[; ;Oled.c: 113:     I2C_Stop();
 [e ( _I2C_Stop ..  ]
-"146
-[; ;Oled.c: 146: }
-[e :UE 30 ]
+"114
+[; ;Oled.c: 114: }
+[e :UE 21 ]
 }

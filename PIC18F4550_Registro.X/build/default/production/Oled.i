@@ -10,11 +10,7 @@
 # 1 "./Oled.h" 1
 # 12 "./Oled.h"
 char FOUNT = 0;
-
-const unsigned char SMALL_FONTS[];
-const unsigned char TINY_FONTS[];
-const unsigned char BIG_FONTS[];
-# 93 "./Oled.h"
+# 89 "./Oled.h"
 const unsigned char SMALL_FONTS[] ={
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x2f, 0x00, 0x00,
@@ -323,14 +319,6 @@ void OLEDsetCursor(unsigned int x,unsigned int y){
     ssd1306_command(0x07);
 }
 
-void OLED_Write(char dato){
-    I2C_Start();
-    I2C_Send(0x3C << 1);
-    I2C_Send(0x40);
-    I2C_Send(dato);
-    I2C_Stop();
-}
-
 void OLED_NPuts(char *buffer){
     I2C_Start();
     I2C_Send(0x3C << 1);
@@ -343,18 +331,6 @@ void OLED_NPuts(char *buffer){
             I2C_Send(SMALL_FONTS[x+i]);
         }
         buffer++;
-    }
-    I2C_Stop();
-}
-
-void OLED_NPut(char buffer){
-    int x = buffer - 32;
-    x=x*6;
-    I2C_Start();
-    I2C_Send(0x3C << 1);
-    I2C_Send(0x40);
-    for(int i=0;i<6;i++){
-        I2C_Send(SMALL_FONTS[x+i]);
     }
     I2C_Stop();
 }
@@ -380,18 +356,6 @@ void OLED_SPuts(unsigned int x,unsigned int y,char *buffer){
         buffer++;
     }
 
-}
-
-void OLED_SPut(unsigned int x,unsigned int y,char buffer){
-    int xi = buffer - 32;
-    xi=xi*3;
-    I2C_Start();
-    I2C_Send(0x3C << 1);
-    I2C_Send(0x40);
-    for(int i=0;i<3;i++){
-        I2C_Send(TINY_FONTS[xi+i]);
-    }
-    I2C_Stop();
 }
 
 void OLEDClear(void){

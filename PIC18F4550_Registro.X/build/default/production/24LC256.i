@@ -8,9 +8,13 @@
 # 2 "<built-in>" 2
 # 1 "24LC256.c" 2
 # 1 "./24lc256.h" 1
-# 15 "./24lc256.h"
+# 14 "./24lc256.h"
+    char Aux[5];
     unsigned char EEPROM_Read(unsigned int add);
     void EEPROM_Write(unsigned int add, unsigned char data);
+    unsigned int EEPROM_getRegistro(void);
+    void EEPROM_setRegistro(unsigned int registro);
+    int Registro_busqueda(char aux[5]);
 # 1 "24LC256.c" 2
 
 # 1 "./i2c.h" 1
@@ -5715,8 +5719,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 unsigned int add = 0xa1;
 
-void EEPROM_Write(unsigned int add, unsigned char data)
-{
+void EEPROM_Write(unsigned int add, unsigned char data){
   I2C_Start();
   I2C_Send(0xA0);
   I2C_Send((add>>8));
@@ -5725,9 +5728,7 @@ void EEPROM_Write(unsigned int add, unsigned char data)
   I2C_Stop();
   _delay((unsigned long)((5)*(8000000/4000.0)));
 }
-
-unsigned char EEPROM_Read(unsigned int add)
-{
+unsigned char EEPROM_Read(unsigned int add){
     I2C_Start();
     I2C_Send(0xA0);
     I2C_Send((add>>8));
@@ -5737,4 +5738,21 @@ unsigned char EEPROM_Read(unsigned int add)
     unsigned char temp;
     temp = I2C_Read();
     return temp;
+}
+unsigned int EEPROM_getRegistro(void){
+    unsigned int registro = 0;
+    registro = EEPROM_Read(2);
+    registro = (registro << 8) | EEPROM_Read(3);
+    return registro;
+}
+void EEPROM_setRegistro(unsigned int registro){
+    EEPROM_Write(2,(unsigned char)(registro / 100));
+    EEPROM_Write(3,(unsigned char)(registro % 100));
+}
+int Registro_busqueda(char aux[5]){
+    unsigned int numero = EEPROM_getRegistro();
+    for(int i=0; i< numero ;i++){
+
+    }
+    return 1;
 }

@@ -1522,378 +1522,244 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;RC522.c: 278: }
 [e :UE 422 ]
 }
-"279
-[; ;RC522.c: 279: char MFRC522_SelectTag( char *serNum )
-[v _MFRC522_SelectTag `(uc ~T0 @X0 1 ef1`*uc ]
-"280
-[; ;RC522.c: 280: {
-{
-[e :U _MFRC522_SelectTag ]
-"279
-[; ;RC522.c: 279: char MFRC522_SelectTag( char *serNum )
-[v _serNum `*uc ~T0 @X0 1 r1 ]
-"280
-[; ;RC522.c: 280: {
-[f ]
 "281
-[; ;RC522.c: 281:   char i;
-[v _i `uc ~T0 @X0 1 a ]
+[; ;RC522.c: 281: void MFRC522_Halt(void)
+[v _MFRC522_Halt `(v ~T0 @X0 1 ef ]
 "282
-[; ;RC522.c: 282:   char _status;
-[v __status `uc ~T0 @X0 1 a ]
+[; ;RC522.c: 282: {
+{
+[e :U _MFRC522_Halt ]
+[f ]
 "283
-[; ;RC522.c: 283:   char size;
-[v _size `uc ~T0 @X0 1 a ]
+[; ;RC522.c: 283:   unsigned unLen;
+[v _unLen `ui ~T0 @X0 1 a ]
 "284
-[; ;RC522.c: 284:   unsigned recvBits;
-[v _recvBits `ui ~T0 @X0 1 a ]
-"285
-[; ;RC522.c: 285:   char buffer[9];
-[v _buffer `uc ~T0 @X0 -> 9 `i a ]
+[; ;RC522.c: 284:   char buff[4];
+[v _buff `uc ~T0 @X0 -> 4 `i a ]
+"286
+[; ;RC522.c: 286:   buff[0] = 0x50;
+[e = *U + &U _buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _buff `ui `ux -> -> 80 `i `uc ]
+"287
+[; ;RC522.c: 287:   buff[1] = 0;
+[e = *U + &U _buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _buff `ui `ux -> -> 0 `i `uc ]
+"288
+[; ;RC522.c: 288:   MFRC522_CRC( buff, 2, &buff[2] );
+[e ( _MFRC522_CRC (3 , , &U _buff -> -> 2 `i `uc &U *U + &U _buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _buff `ui `ux ]
 "289
-[; ;RC522.c: 289:   buffer[0] = 0x93;
-[e = *U + &U _buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _buffer `ui `ux -> -> 147 `i `uc ]
+[; ;RC522.c: 289:   MFRC522_Clear_Bit( 0x08, 0x80 );
+[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 128 `i `uc ]
 "290
-[; ;RC522.c: 290:   buffer[1] = 0x70;
-[e = *U + &U _buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _buffer `ui `ux -> -> 112 `i `uc ]
+[; ;RC522.c: 290:   MFRC522_ToCard( 0x0C, buff, 4, buff, &unLen );
+[e ( _MFRC522_ToCard (4 , , , , -> -> 12 `i `uc &U _buff -> -> 4 `i `uc &U _buff &U _unLen ]
+"291
+[; ;RC522.c: 291:   MFRC522_Clear_Bit( 0x08, 0x08 );
+[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 8 `i `uc ]
 "292
-[; ;RC522.c: 292:   for ( i=2; i < 7; i++ )
-{
-[e = _i -> -> 2 `i `uc ]
-[e $ < -> _i `i -> 7 `i 431  ]
-[e $U 432  ]
-[e :U 431 ]
+[; ;RC522.c: 292: }
+[e :UE 430 ]
+}
 "293
-[; ;RC522.c: 293:   {
-{
+[; ;RC522.c: 293: char MFRC522_AntiColl( char *serNum )
+[v _MFRC522_AntiColl `(uc ~T0 @X0 1 ef1`*uc ]
 "294
-[; ;RC522.c: 294:     buffer[i] = *serNum++;
-[e = *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux *U ++ _serNum * -> -> 1 `i `x -> -> # *U _serNum `i `x ]
-"295
-[; ;RC522.c: 295:   }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 7 `i 431  ]
-[e :U 432 ]
-}
-"297
-[; ;RC522.c: 297:   MFRC522_CRC( buffer, 7, &buffer[7] );
-[e ( _MFRC522_CRC (3 , , &U _buffer -> -> 7 `i `uc &U *U + &U _buffer * -> -> -> 7 `i `ui `ux -> -> # *U &U _buffer `ui `ux ]
-"299
-[; ;RC522.c: 299:   _status = MFRC522_ToCard( 0x0C, buffer, 9, buffer, &recvBits );
-[e = __status ( _MFRC522_ToCard (4 , , , , -> -> 12 `i `uc &U _buffer -> -> 9 `i `uc &U _buffer &U _recvBits ]
-"300
-[; ;RC522.c: 300:   if ( (_status == 0) && (recvBits == 0x18) )
-[e $ ! && == -> __status `i -> 0 `i == _recvBits -> -> 24 `i `ui 434  ]
-"301
-[; ;RC522.c: 301:   {
+[; ;RC522.c: 294: {
 {
+[e :U _MFRC522_AntiColl ]
+"293
+[; ;RC522.c: 293: char MFRC522_AntiColl( char *serNum )
+[v _serNum `*uc ~T0 @X0 1 r1 ]
+"294
+[; ;RC522.c: 294: {
+[f ]
+"295
+[; ;RC522.c: 295:   char _status;
+[v __status `uc ~T0 @X0 1 a ]
+"296
+[; ;RC522.c: 296:   char i;
+[v _i `uc ~T0 @X0 1 a ]
+"297
+[; ;RC522.c: 297:   char serNumCheck = 0;
+[v _serNumCheck `uc ~T0 @X0 1 a ]
+[e = _serNumCheck -> -> 0 `i `uc ]
+"298
+[; ;RC522.c: 298:   unsigned int unLen;
+[v _unLen `ui ~T0 @X0 1 a ]
+"299
+[; ;RC522.c: 299:   MFRC522_Wr( 0x0D, 0x00 );
+[e ( _MFRC522_Wr (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
+"300
+[; ;RC522.c: 300:   serNum[0] = 0x93;
+[e = *U + _serNum * -> -> 0 `i `x -> -> # *U _serNum `i `x -> -> 147 `i `uc ]
+"301
+[; ;RC522.c: 301:   serNum[1] = 0x20;
+[e = *U + _serNum * -> -> 1 `i `x -> -> # *U _serNum `i `x -> -> 32 `i `uc ]
 "302
-[; ;RC522.c: 302:     size = buffer[0];
-[e = _size *U + &U _buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _buffer `ui `ux ]
+[; ;RC522.c: 302:   MFRC522_Clear_Bit( 0x08, 0x08 );
+[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 8 `i `uc ]
 "303
-[; ;RC522.c: 303:   }
-}
-[e $U 435  ]
+[; ;RC522.c: 303:   _status = MFRC522_ToCard( 0x0C, serNum, 2, serNum, &unLen );
+[e = __status ( _MFRC522_ToCard (4 , , , , -> -> 12 `i `uc _serNum -> -> 2 `i `uc _serNum &U _unLen ]
 "304
-[; ;RC522.c: 304:   else
-[e :U 434 ]
+[; ;RC522.c: 304:   if (_status == 0)
+[e $ ! == -> __status `i -> 0 `i 432  ]
 "305
 [; ;RC522.c: 305:   {
 {
 "306
-[; ;RC522.c: 306:     size = 0;
-[e = _size -> -> 0 `i `uc ]
-"307
-[; ;RC522.c: 307:   }
-}
-[e :U 435 ]
-"308
-[; ;RC522.c: 308:   return size;
-[e ) _size ]
-[e $UE 430  ]
-"309
-[; ;RC522.c: 309: }
-[e :UE 430 ]
-}
-"311
-[; ;RC522.c: 311: void MFRC522_Halt(void)
-[v _MFRC522_Halt `(v ~T0 @X0 1 ef ]
-"312
-[; ;RC522.c: 312: {
-{
-[e :U _MFRC522_Halt ]
-[f ]
-"313
-[; ;RC522.c: 313:   unsigned unLen;
-[v _unLen `ui ~T0 @X0 1 a ]
-"314
-[; ;RC522.c: 314:   char buff[4];
-[v _buff `uc ~T0 @X0 -> 4 `i a ]
-"316
-[; ;RC522.c: 316:   buff[0] = 0x50;
-[e = *U + &U _buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _buff `ui `ux -> -> 80 `i `uc ]
-"317
-[; ;RC522.c: 317:   buff[1] = 0;
-[e = *U + &U _buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _buff `ui `ux -> -> 0 `i `uc ]
-"318
-[; ;RC522.c: 318:   MFRC522_CRC( buff, 2, &buff[2] );
-[e ( _MFRC522_CRC (3 , , &U _buff -> -> 2 `i `uc &U *U + &U _buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _buff `ui `ux ]
-"319
-[; ;RC522.c: 319:   MFRC522_Clear_Bit( 0x08, 0x80 );
-[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 128 `i `uc ]
-"320
-[; ;RC522.c: 320:   MFRC522_ToCard( 0x0C, buff, 4, buff, &unLen );
-[e ( _MFRC522_ToCard (4 , , , , -> -> 12 `i `uc &U _buff -> -> 4 `i `uc &U _buff &U _unLen ]
-"321
-[; ;RC522.c: 321:   MFRC522_Clear_Bit( 0x08, 0x08 );
-[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 8 `i `uc ]
-"322
-[; ;RC522.c: 322: }
-[e :UE 436 ]
-}
-"323
-[; ;RC522.c: 323: char MFRC522_AntiColl( char *serNum )
-[v _MFRC522_AntiColl `(uc ~T0 @X0 1 ef1`*uc ]
-"324
-[; ;RC522.c: 324: {
-{
-[e :U _MFRC522_AntiColl ]
-"323
-[; ;RC522.c: 323: char MFRC522_AntiColl( char *serNum )
-[v _serNum `*uc ~T0 @X0 1 r1 ]
-"324
-[; ;RC522.c: 324: {
-[f ]
-"325
-[; ;RC522.c: 325:   char _status;
-[v __status `uc ~T0 @X0 1 a ]
-"326
-[; ;RC522.c: 326:   char i;
-[v _i `uc ~T0 @X0 1 a ]
-"327
-[; ;RC522.c: 327:   char serNumCheck = 0;
-[v _serNumCheck `uc ~T0 @X0 1 a ]
-[e = _serNumCheck -> -> 0 `i `uc ]
-"328
-[; ;RC522.c: 328:   unsigned int unLen;
-[v _unLen `ui ~T0 @X0 1 a ]
-"329
-[; ;RC522.c: 329:   MFRC522_Wr( 0x0D, 0x00 );
-[e ( _MFRC522_Wr (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
-"330
-[; ;RC522.c: 330:   serNum[0] = 0x93;
-[e = *U + _serNum * -> -> 0 `i `x -> -> # *U _serNum `i `x -> -> 147 `i `uc ]
-"331
-[; ;RC522.c: 331:   serNum[1] = 0x20;
-[e = *U + _serNum * -> -> 1 `i `x -> -> # *U _serNum `i `x -> -> 32 `i `uc ]
-"332
-[; ;RC522.c: 332:   MFRC522_Clear_Bit( 0x08, 0x08 );
-[e ( _MFRC522_Clear_Bit (2 , -> -> 8 `i `uc -> -> 8 `i `uc ]
-"333
-[; ;RC522.c: 333:   _status = MFRC522_ToCard( 0x0C, serNum, 2, serNum, &unLen );
-[e = __status ( _MFRC522_ToCard (4 , , , , -> -> 12 `i `uc _serNum -> -> 2 `i `uc _serNum &U _unLen ]
-"334
-[; ;RC522.c: 334:   if (_status == 0)
-[e $ ! == -> __status `i -> 0 `i 438  ]
-"335
-[; ;RC522.c: 335:   {
-{
-"336
-[; ;RC522.c: 336:     for ( i=0; i < 4; i++ )
+[; ;RC522.c: 306:     for ( i=0; i < 4; i++ )
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 4 `i 439  ]
-[e $U 440  ]
-[e :U 439 ]
-"337
-[; ;RC522.c: 337:     {
+[e $ < -> _i `i -> 4 `i 433  ]
+[e $U 434  ]
+[e :U 433 ]
+"307
+[; ;RC522.c: 307:     {
 {
-"338
-[; ;RC522.c: 338:       serNumCheck ^= serNum[i];
+"308
+[; ;RC522.c: 308:       serNumCheck ^= serNum[i];
 [e =^ _serNumCheck -> *U + _serNum * -> _i `ux -> -> # *U _serNum `ui `ux `uc ]
-"339
-[; ;RC522.c: 339:     }
+"309
+[; ;RC522.c: 309:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 4 `i 439  ]
-[e :U 440 ]
+[e $ < -> _i `i -> 4 `i 433  ]
+[e :U 434 ]
 }
-"341
-[; ;RC522.c: 341:     if ( serNumCheck != serNum[4] )
-[e $ ! != -> _serNumCheck `i -> *U + _serNum * -> -> 4 `i `x -> -> # *U _serNum `i `x `i 442  ]
-"342
-[; ;RC522.c: 342:     {
+"311
+[; ;RC522.c: 311:     if ( serNumCheck != serNum[4] )
+[e $ ! != -> _serNumCheck `i -> *U + _serNum * -> -> 4 `i `x -> -> # *U _serNum `i `x `i 436  ]
+"312
+[; ;RC522.c: 312:     {
 {
-"343
-[; ;RC522.c: 343:       _status = 2;
+"313
+[; ;RC522.c: 313:       _status = 2;
 [e = __status -> -> 2 `i `uc ]
-"344
-[; ;RC522.c: 344:     }
+"314
+[; ;RC522.c: 314:     }
 }
-[e :U 442 ]
-"345
-[; ;RC522.c: 345:   }
+[e :U 436 ]
+"315
+[; ;RC522.c: 315:   }
 }
-[e :U 438 ]
-"346
-[; ;RC522.c: 346:   return _status;
+[e :U 432 ]
+"316
+[; ;RC522.c: 316:   return _status;
 [e ) __status ]
-[e $UE 437  ]
-"347
-[; ;RC522.c: 347: }
-[e :UE 437 ]
+[e $UE 431  ]
+"317
+[; ;RC522.c: 317: }
+[e :UE 431 ]
 }
-"348
-[; ;RC522.c: 348: char MFRC522_isCard( char *TagType )
+"318
+[; ;RC522.c: 318: char MFRC522_isCard( char *TagType )
 [v _MFRC522_isCard `(uc ~T0 @X0 1 ef1`*uc ]
-"349
-[; ;RC522.c: 349: {
+"319
+[; ;RC522.c: 319: {
 {
 [e :U _MFRC522_isCard ]
-"348
-[; ;RC522.c: 348: char MFRC522_isCard( char *TagType )
+"318
+[; ;RC522.c: 318: char MFRC522_isCard( char *TagType )
 [v _TagType `*uc ~T0 @X0 1 r1 ]
-"349
-[; ;RC522.c: 349: {
+"319
+[; ;RC522.c: 319: {
 [f ]
-"350
-[; ;RC522.c: 350:     if (MFRC522_Request( 0x26, TagType ) == 0)
-[e $ ! == -> ( _MFRC522_Request (2 , -> -> 38 `i `uc _TagType `i -> 0 `i 444  ]
-"351
-[; ;RC522.c: 351:         return 1;
+"320
+[; ;RC522.c: 320:     if (MFRC522_Request( 0x26, TagType ) == 0)
+[e $ ! == -> ( _MFRC522_Request (2 , -> -> 38 `i `uc _TagType `i -> 0 `i 438  ]
+"321
+[; ;RC522.c: 321:         return 1;
 [e ) -> -> 1 `i `uc ]
-[e $UE 443  ]
-[e $U 445  ]
-"352
-[; ;RC522.c: 352:     else
-[e :U 444 ]
-"353
-[; ;RC522.c: 353:         return 0;
+[e $UE 437  ]
+[e $U 439  ]
+"322
+[; ;RC522.c: 322:     else
+[e :U 438 ]
+"323
+[; ;RC522.c: 323:         return 0;
 [e ) -> -> 0 `i `uc ]
-[e $UE 443  ]
-[e :U 445 ]
-"354
-[; ;RC522.c: 354: }
-[e :UE 443 ]
+[e $UE 437  ]
+[e :U 439 ]
+"324
+[; ;RC522.c: 324: }
+[e :UE 437 ]
 }
-"355
-[; ;RC522.c: 355: char MFRC522_ReadCardSerial( char *str )
+"325
+[; ;RC522.c: 325: char MFRC522_ReadCardSerial( char *str )
 [v _MFRC522_ReadCardSerial `(uc ~T0 @X0 1 ef1`*uc ]
-"356
-[; ;RC522.c: 356: {
+"326
+[; ;RC522.c: 326: {
 {
 [e :U _MFRC522_ReadCardSerial ]
-"355
-[; ;RC522.c: 355: char MFRC522_ReadCardSerial( char *str )
+"325
+[; ;RC522.c: 325: char MFRC522_ReadCardSerial( char *str )
 [v _str `*uc ~T0 @X0 1 r1 ]
-"356
-[; ;RC522.c: 356: {
+"326
+[; ;RC522.c: 326: {
 [f ]
-"357
-[; ;RC522.c: 357: char _status;
+"327
+[; ;RC522.c: 327: char _status;
 [v __status `uc ~T0 @X0 1 a ]
-"358
-[; ;RC522.c: 358: _status = MFRC522_AntiColl( str );
+"328
+[; ;RC522.c: 328: _status = MFRC522_AntiColl( str );
 [e = __status ( _MFRC522_AntiColl (1 _str ]
-"359
-[; ;RC522.c: 359: str[5] = 0;
+"329
+[; ;RC522.c: 329: str[5] = 0;
 [e = *U + _str * -> -> 5 `i `x -> -> # *U _str `i `x -> -> 0 `i `uc ]
-"360
-[; ;RC522.c: 360: if (_status == 0)
-[e $ ! == -> __status `i -> 0 `i 447  ]
-"361
-[; ;RC522.c: 361:   return 1;
+"330
+[; ;RC522.c: 330: if (_status == 0)
+[e $ ! == -> __status `i -> 0 `i 441  ]
+"331
+[; ;RC522.c: 331:   return 1;
 [e ) -> -> 1 `i `uc ]
-[e $UE 446  ]
-[e $U 448  ]
-"362
-[; ;RC522.c: 362: else
-[e :U 447 ]
-"363
-[; ;RC522.c: 363:   return 0;
+[e $UE 440  ]
+[e $U 442  ]
+"332
+[; ;RC522.c: 332: else
+[e :U 441 ]
+"333
+[; ;RC522.c: 333:   return 0;
 [e ) -> -> 0 `i `uc ]
-[e $UE 446  ]
-[e :U 448 ]
-"364
-[; ;RC522.c: 364: }
-[e :UE 446 ]
+[e $UE 440  ]
+[e :U 442 ]
+"334
+[; ;RC522.c: 334: }
+[e :UE 440 ]
 }
-"365
-[; ;RC522.c: 365: int MFRC522_Compare_UID(char* l, char* u)
-[v _MFRC522_Compare_UID `(i ~T0 @X0 1 ef2`*uc`*uc ]
-"366
-[; ;RC522.c: 366: {
-{
-[e :U _MFRC522_Compare_UID ]
-"365
-[; ;RC522.c: 365: int MFRC522_Compare_UID(char* l, char* u)
-[v _l `*uc ~T0 @X0 1 r1 ]
-[v _u `*uc ~T0 @X0 1 r2 ]
-"366
-[; ;RC522.c: 366: {
-[f ]
-"367
-[; ;RC522.c: 367:    if(l[0]==u[0] && l[1]==u[1] && l[2]==u[2] && l[3]==u[3] && l[4]==u[4]){
-[e $ ! && && && && == -> *U + _l * -> -> 0 `i `x -> -> # *U _l `i `x `i -> *U + _u * -> -> 0 `i `x -> -> # *U _u `i `x `i == -> *U + _l * -> -> 1 `i `x -> -> # *U _l `i `x `i -> *U + _u * -> -> 1 `i `x -> -> # *U _u `i `x `i == -> *U + _l * -> -> 2 `i `x -> -> # *U _l `i `x `i -> *U + _u * -> -> 2 `i `x -> -> # *U _u `i `x `i == -> *U + _l * -> -> 3 `i `x -> -> # *U _l `i `x `i -> *U + _u * -> -> 3 `i `x -> -> # *U _u `i `x `i == -> *U + _l * -> -> 4 `i `x -> -> # *U _l `i `x `i -> *U + _u * -> -> 4 `i `x -> -> # *U _u `i `x `i 450  ]
-{
-"368
-[; ;RC522.c: 368:       return 1;
-[e ) -> 1 `i ]
-[e $UE 449  ]
-"369
-[; ;RC522.c: 369:    }else{
-}
-[e $U 451  ]
-[e :U 450 ]
-{
-"370
-[; ;RC522.c: 370:       return 0;
-[e ) -> 0 `i ]
-[e $UE 449  ]
-"371
-[; ;RC522.c: 371:    }
-}
-[e :U 451 ]
-"372
-[; ;RC522.c: 372: }
-[e :UE 449 ]
-}
-"373
-[; ;RC522.c: 373: void MFRC522_Clear_UID(char* u_i)
+"336
+[; ;RC522.c: 336: void MFRC522_Clear_UID(char* u_i)
 [v _MFRC522_Clear_UID `(v ~T0 @X0 1 ef1`*uc ]
-"374
-[; ;RC522.c: 374: {
+"337
+[; ;RC522.c: 337: {
 {
 [e :U _MFRC522_Clear_UID ]
-"373
-[; ;RC522.c: 373: void MFRC522_Clear_UID(char* u_i)
+"336
+[; ;RC522.c: 336: void MFRC522_Clear_UID(char* u_i)
 [v _u_i `*uc ~T0 @X0 1 r1 ]
-"374
-[; ;RC522.c: 374: {
+"337
+[; ;RC522.c: 337: {
 [f ]
-"375
-[; ;RC522.c: 375:   for(int j=0; j<10; j++)
+"338
+[; ;RC522.c: 338:   for(int j=0; j<10; j++)
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-[e $ < _j -> 10 `i 453  ]
-[e $U 454  ]
-[e :U 453 ]
-"376
-[; ;RC522.c: 376:   {
+[e $ < _j -> 10 `i 444  ]
+[e $U 445  ]
+[e :U 444 ]
+"339
+[; ;RC522.c: 339:   {
 {
-"377
-[; ;RC522.c: 377:     u_i[j] = 0;
+"340
+[; ;RC522.c: 340:     u_i[j] = 0;
 [e = *U + _u_i * -> _j `x -> -> # *U _u_i `i `x -> -> 0 `i `uc ]
-"378
-[; ;RC522.c: 378:   }
+"341
+[; ;RC522.c: 341:   }
 }
 [e ++ _j -> 1 `i ]
-[e $ < _j -> 10 `i 453  ]
-[e :U 454 ]
+[e $ < _j -> 10 `i 444  ]
+[e :U 445 ]
 }
-"379
-[; ;RC522.c: 379: }
-[e :UE 452 ]
+"342
+[; ;RC522.c: 342: }
+[e :UE 443 ]
 }

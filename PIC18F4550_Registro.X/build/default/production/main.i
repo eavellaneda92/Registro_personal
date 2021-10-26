@@ -5703,11 +5703,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./Oled.h" 1
 # 12 "./Oled.h"
 char FOUNT = 0;
-
-const unsigned char SMALL_FONTS[];
-const unsigned char TINY_FONTS[];
-const unsigned char BIG_FONTS[];
-# 93 "./Oled.h"
+# 89 "./Oled.h"
 const unsigned char SMALL_FONTS[] ={
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x2f, 0x00, 0x00,
@@ -6136,23 +6132,33 @@ void MFRC522_Clear_UID(char* u_i);
 # 14 "main.c" 2
 
 char UID[10];
+char sms[10];
 char *TagType;
 
-
 # 1 "./24lc256.h" 1
-# 15 "./24lc256.h"
+# 14 "./24lc256.h"
+    char Aux[5];
     unsigned char EEPROM_Read(unsigned int add);
     void EEPROM_Write(unsigned int add, unsigned char data);
+    unsigned int EEPROM_getRegistro(void);
+    void EEPROM_setRegistro(unsigned int registro);
+    int Registro_busqueda(char aux[5]);
 # 18 "main.c" 2
 
 
 
+unsigned char Horax = 0;
+unsigned char Minutox = 0;
+unsigned char Segundox = 0;
 unsigned char Hora = 22;
 unsigned char Minuto = 49;
 unsigned char Segundo = 1;
-unsigned char anio = 20;
-unsigned char mes = 10;
-unsigned char dia = 1;
+unsigned char anio = 0;
+unsigned char mes = 0;
+unsigned char dia = 0;
+unsigned char aniox = 20;
+unsigned char mesx = 10;
+unsigned char diax = 1;
 
 
 void Print_Ticket(void);
@@ -6163,6 +6169,9 @@ void Print_Menu(void);
 void Print_Hora(void);
 void Print_Minuto(void);
 void Print_Segundo(void);
+void Print_Dia(void);
+void Print_Mes(void);
+void Print_anio(void);
 
 
 void set_RTC(void);
@@ -6171,6 +6180,9 @@ unsigned char bcd_to_decimal(unsigned char number);
 unsigned char decimal_to_bcd(unsigned char number);
 unsigned int contador_t1 = 0;
 char flag_t1 = 0;
+
+
+unsigned int registro = 0;
 
 void __attribute__((picinterrupt(("")))) scr(){
     if(PIR1bits.TMR1IF){
@@ -6199,12 +6211,23 @@ void main(void) {
     UART_Begin(9600);
     UART_Println("Hola mundo");
 
-    OLED_Init();
-    set_RTC();
-    if(EEPROM_Read(1) != 22){
 
+    _delay((unsigned long)((1500)*(8000000/4000.0)));
+    OLED_Init();
+    Print_Menu();
+    set_RTC();
+
+
+    MFRC522_Init();
+
+
+    if(EEPROM_Read(1) != 22){
+        EEPROM_setRegistro(0);
+        EEPROM_Write(1,22);
+    }else{
+        registro = EEPROM_getRegistro();
     }
-    UART_Write(EEPROM_Read(0x10));
+
     while(1){
 
         if(flag_t1){
@@ -6213,9 +6236,10 @@ void main(void) {
             flag_t1 = 0;
         }
 
-
+        CHECK_TAG();
     }
 }
+
 
 void Print_Menu(void){
     OLEDClear();
@@ -6226,25 +6250,38 @@ void Print_Menu(void){
     Print_Minuto();
     Print_Segundo();
 }
-
 void Print_Hora(void){
-    char sms[10];
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     OLED_SPuts(10,5,sms);
 }
-
 void Print_Minuto(void){
-    char sms[10];
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
     OLED_SPuts(50,5,sms);
 }
-
 void Print_Segundo(void){
-    char sms[10];
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     OLED_SPuts(90,5,sms);
 }
+void Print_dia(void){
+    sprintf(sms,"%d%d",dia/10,dia%10);
+    OLED_SPuts(90,6,sms);
+}
+void Print_mes(void){
+    sprintf(sms,"%d%d",mes/10,mes%10);
+    OLED_SPuts(50,6,sms);
+}
+void Print_anio(void){
+    sprintf(sms,"%d%d",anio/10,anio%10);
+    OLED_SPuts(10,6,sms);
+}
 
+
+unsigned char bcd_to_decimal(unsigned char number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+unsigned char decimal_to_bcd(unsigned char number) {
+  return((unsigned char)(((number / 10) << 4) + (number % 10)));
+}
 void get_RTC(void){
     I2C_Start_DS();
     I2C_Write_DS(0xD0);
@@ -6254,13 +6291,36 @@ void get_RTC(void){
     Segundo = I2C_Read_DS(1);
     Minuto = I2C_Read_DS(1);
     Hora = I2C_Read_DS(1);
+    if(Hora != Horax){
+        Horax = Hora;
+        Print_Hora();
+    }
+    if(Minuto != Minutox){
+        Minutox = Minuto;
+        Print_Minuto();
+    }
+    if(Segundo != Segundox){
+        Segundox = Segundo;
+        Print_Segundo();
+    }
     I2C_Read_DS(1);
     dia = I2C_Read_DS(1);
     mes = I2C_Read_DS(1);
     anio = I2C_Read_DS(0);
+    if(dia != diax){
+        Print_dia();
+        diax = dia;
+    }
+    if(mes != mesx){
+        mesx = mes;
+        Print_mes();
+    }
+    if(anio != aniox){
+        aniox = anio;
+        Print_anio();
+    }
     I2C_Stop_DS();
 }
-
 void set_RTC(void){
       Hora = decimal_to_bcd(Hora);
       Minuto = decimal_to_bcd(Minuto);
@@ -6284,11 +6344,11 @@ void set_RTC(void){
       _delay((unsigned long)((6)*(8000000/4000.0)));
 }
 
+
 void Print_Ticket(void){
     Hora = bcd_to_decimal(Hora);
     Minuto = bcd_to_decimal(Minuto);
     Segundo = bcd_to_decimal(Segundo);
-    char sms[10];
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
@@ -6297,13 +6357,6 @@ void Print_Ticket(void){
     UART_Println(sms);
 }
 
-unsigned char bcd_to_decimal(unsigned char number) {
-  return((number >> 4) * 10 + (number & 0x0F));
-}
-
-unsigned char decimal_to_bcd(unsigned char number) {
-  return((unsigned char)(((number / 10) << 4) + (number % 10)));
-}
 
 void CHECK_TAG(void){
    if(MFRC522_isCard(TagType)){
@@ -6312,10 +6365,9 @@ void CHECK_TAG(void){
          int i = 0;
          char buf[20];
          for(i=0; i<5; i++){
-            sprintf(buf, "%d ", UID[i]);
-            UART_Println(buf);
+            Aux[i] = UID[i];
          }
-         UART_Println("PASA PROCESO 3");
+         Registro_busqueda(Aux);
          MFRC522_Clear_UID(UID);
       }
       MFRC522_Halt();

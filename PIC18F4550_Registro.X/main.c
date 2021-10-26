@@ -12,18 +12,24 @@
 #include "UART.h"
 #include "Timer1.h"
 #include "RC522.h"
-char UID[10];                                   
+char UID[10]; 
+char sms[10];
 char *TagType; 
-
 #include "24lc256.h"
 
 //ESTRUCTURA DE VARIABLES PARA PANTALLA Y RTC
+unsigned char Horax = 0;
+unsigned char Minutox = 0;
+unsigned char Segundox = 0;
 unsigned char Hora = 22;
 unsigned char Minuto = 49;
 unsigned char Segundo = 1;
-unsigned char anio = 20;
-unsigned char mes = 10;
-unsigned char dia = 1;
+unsigned char anio = 0;
+unsigned char mes = 0;
+unsigned char dia = 0;
+unsigned char aniox = 20;
+unsigned char mesx = 10;
+unsigned char diax = 1;
 
 //FUNCIONES PARA IMPRESORA Y RC622
 void Print_Ticket(void);
@@ -34,6 +40,9 @@ void Print_Menu(void);
 void Print_Hora(void);
 void Print_Minuto(void);
 void Print_Segundo(void);
+void Print_Dia(void);
+void Print_Mes(void);
+void Print_anio(void);
 
 //FUNCIONES Y VARIABLES PARA fu RTC
 void set_RTC(void);
@@ -42,6 +51,9 @@ unsigned char bcd_to_decimal(unsigned char number);
 unsigned char decimal_to_bcd(unsigned char number);
 unsigned int contador_t1 = 0;
 char flag_t1 = 0;
+
+//VARIABLES PARA MEMORIA
+unsigned int registro = 0;
 
 void __interrupt() scr(){
     if(PIR1bits.TMR1IF){
@@ -69,25 +81,37 @@ void main(void) {
     UART_Init();
     UART_Begin(9600);
     UART_Println("Hola mundo");
-    //__delay_ms(1500);
+    
+    //PANTALLA OLED
+    __delay_ms(1500);
     OLED_Init();
+    Print_Menu();
     set_RTC();
+    
+    //PUERTO NFC
+    MFRC522_Init();
+    
+    //Si la memoria esta es nueva la prepara para inicio
     if(EEPROM_Read(1) != 22){
-        
+        EEPROM_setRegistro(0);
+        EEPROM_Write(1,22);
+    }else{
+        registro = EEPROM_getRegistro();
     }
-    UART_Write(EEPROM_Read(0x10));
+    
     while(1){
         //Espera de tiempo para leer tiempo
         if(flag_t1){
-            get_RTC();
+            get_RTC(); //En esta funcion tambien se imprime el reloj
             Print_Ticket();
             flag_t1 = 0;
         }
-        //Lectura de TARJETE
-        //CHECK_TAG();
+        //Lectura de TARJETA
+        CHECK_TAG();
     }
 }
 
+//Funciones OLED
 void Print_Menu(void){
     OLEDClear();
     OLED_SPuts(0,0,"LECOMPERU");
@@ -97,25 +121,38 @@ void Print_Menu(void){
     Print_Minuto();
     Print_Segundo();
 }
-
 void Print_Hora(void){
-    char sms[10];
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     OLED_SPuts(10,5,sms);
 }
-
 void Print_Minuto(void){
-    char sms[10];
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
     OLED_SPuts(50,5,sms);
 }
-
 void Print_Segundo(void){
-    char sms[10];
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     OLED_SPuts(90,5,sms);
 }
+void Print_dia(void){
+    sprintf(sms,"%d%d",dia/10,dia%10);
+    OLED_SPuts(90,6,sms);
+}
+void Print_mes(void){
+    sprintf(sms,"%d%d",mes/10,mes%10);
+    OLED_SPuts(50,6,sms);
+}
+void Print_anio(void){
+    sprintf(sms,"%d%d",anio/10,anio%10);
+    OLED_SPuts(10,6,sms);
+}
 
+//Funciones RTC
+unsigned char bcd_to_decimal(unsigned char number) {
+  return((number >> 4) * 10 + (number & 0x0F));
+}
+unsigned char decimal_to_bcd(unsigned char number) {
+  return((unsigned char)(((number / 10) << 4) + (number % 10)));
+}
 void get_RTC(void){
     I2C_Start_DS();           
     I2C_Write_DS(0xD0);       
@@ -124,14 +161,37 @@ void get_RTC(void){
     I2C_Write_DS(0xD1);       
     Segundo = I2C_Read_DS(1);  
     Minuto = I2C_Read_DS(1);  
-    Hora = I2C_Read_DS(1);  
+    Hora = I2C_Read_DS(1);
+    if(Hora != Horax){
+        Horax = Hora;
+        Print_Hora();
+    }
+    if(Minuto != Minutox){
+        Minutox = Minuto;
+        Print_Minuto();
+    }
+    if(Segundo != Segundox){
+        Segundox = Segundo;
+        Print_Segundo();
+    }
     I2C_Read_DS(1);           
-    dia = I2C_Read_DS(1);  
+    dia = I2C_Read_DS(1);
     mes = I2C_Read_DS(1);  
-    anio = I2C_Read_DS(0);  
+    anio = I2C_Read_DS(0);
+    if(dia != diax){
+        Print_dia();
+        diax = dia;
+    }
+    if(mes != mesx){
+        mesx = mes;
+        Print_mes();
+    }
+    if(anio != aniox){
+        aniox = anio;
+        Print_anio();
+    }
     I2C_Stop_DS();            
 }
-
 void set_RTC(void){
       Hora = decimal_to_bcd(Hora);
       Minuto = decimal_to_bcd(Minuto);
@@ -155,11 +215,11 @@ void set_RTC(void){
       __delay_ms(6);
 }
 
+//Funcion Impresora
 void Print_Ticket(void){
     Hora = bcd_to_decimal(Hora);
     Minuto = bcd_to_decimal(Minuto);
     Segundo = bcd_to_decimal(Segundo);
-    char sms[10];
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
@@ -168,14 +228,7 @@ void Print_Ticket(void){
     UART_Println(sms);
 }
 
-unsigned char bcd_to_decimal(unsigned char number) {
-  return((number >> 4) * 10 + (number & 0x0F));
-}
- 
-unsigned char decimal_to_bcd(unsigned char number) {
-  return((unsigned char)(((number / 10) << 4) + (number % 10)));
-}
-
+//Funcion RFID
 void CHECK_TAG(void){
    if(MFRC522_isCard(TagType)){              // Verificacion si hay un tag disponible
       if(MFRC522_ReadCardSerial(UID)){       // Lectura y verificacion si encontro algun tag
@@ -183,10 +236,9 @@ void CHECK_TAG(void){
          int i = 0;
          char buf[20];
          for(i=0; i<5; i++){                  // Imprime la ID en la pantalla LCD
-            sprintf(buf, "%d ", UID[i]);
-            UART_Println(buf);
+            Aux[i] = UID[i];
          }       
-         UART_Println("PASA PROCESO 3");
+         Registro_busqueda(Aux);
          MFRC522_Clear_UID(UID);             // Limpia temporalmente la ID
       }
       MFRC522_Halt();                        // Apaga la antena

@@ -5991,37 +5991,7 @@ char i, n;
     dataOut[0] = MFRC522_Rd( 0x22 );
     dataOut[1] = MFRC522_Rd( 0x21 );
 }
-char MFRC522_SelectTag( char *serNum )
-{
-  char i;
-  char _status;
-  char size;
-  unsigned recvBits;
-  char buffer[9];
 
-
-
-  buffer[0] = 0x93;
-  buffer[1] = 0x70;
-
-  for ( i=2; i < 7; i++ )
-  {
-    buffer[i] = *serNum++;
-  }
-
-  MFRC522_CRC( buffer, 7, &buffer[7] );
-
-  _status = MFRC522_ToCard( 0x0C, buffer, 9, buffer, &recvBits );
-  if ( (_status == 0) && (recvBits == 0x18) )
-  {
-    size = buffer[0];
-  }
-  else
-  {
-    size = 0;
-  }
-  return size;
-}
 
 void MFRC522_Halt(void)
 {
@@ -6077,14 +6047,7 @@ if (_status == 0)
 else
   return 0;
 }
-int MFRC522_Compare_UID(char* l, char* u)
-{
-   if(l[0]==u[0] && l[1]==u[1] && l[2]==u[2] && l[3]==u[3] && l[4]==u[4]){
-      return 1;
-   }else{
-      return 0;
-   }
-}
+
 void MFRC522_Clear_UID(char* u_i)
 {
   for(int j=0; j<10; j++)
