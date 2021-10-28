@@ -106,9 +106,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "58
 [; ;main.c: 58: void get_RTC(void);
 [v _get_RTC `(v ~T0 @X0 0 ef ]
-"44
-[; ;main.c: 44: void Print_Ticket(void);
-[v _Print_Ticket `(v ~T0 @X0 0 ef ]
 "45
 [; ;main.c: 45: void CHECK_TAG(void);
 [v _CHECK_TAG `(v ~T0 @X0 0 ef ]
@@ -4791,28 +4788,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 "36
-[; ;main.c: 36: unsigned char anio = 0;
+[; ;main.c: 36: unsigned char anio = 21;
 [v _anio `uc ~T0 @X0 1 e ]
 [i _anio
--> -> 0 `i `uc
+-> -> 21 `i `uc
 ]
 "37
-[; ;main.c: 37: unsigned char mes = 0;
+[; ;main.c: 37: unsigned char mes = 10;
 [v _mes `uc ~T0 @X0 1 e ]
 [i _mes
--> -> 0 `i `uc
+-> -> 10 `i `uc
 ]
 "38
-[; ;main.c: 38: unsigned char dia = 0;
+[; ;main.c: 38: unsigned char dia = 28;
 [v _dia `uc ~T0 @X0 1 e ]
 [i _dia
--> -> 0 `i `uc
+-> -> 28 `i `uc
 ]
 "39
-[; ;main.c: 39: unsigned char aniox = 20;
+[; ;main.c: 39: unsigned char aniox = 21;
 [v _aniox `uc ~T0 @X0 1 e ]
 [i _aniox
--> -> 20 `i `uc
+-> -> 21 `i `uc
 ]
 "40
 [; ;main.c: 40: unsigned char mesx = 10;
@@ -4821,10 +4818,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 10 `i `uc
 ]
 "41
-[; ;main.c: 41: unsigned char diax = 1;
+[; ;main.c: 41: unsigned char diax = 28;
 [v _diax `uc ~T0 @X0 1 e ]
 [i _diax
--> -> 1 `i `uc
+-> -> 28 `i `uc
 ]
 "61
 [; ;main.c: 61: unsigned int contador_t1 = 0;
@@ -4976,9 +4973,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "117
 [; ;main.c: 117:                 get_RTC();
 [e ( _get_RTC ..  ]
-"118
-[; ;main.c: 118:                 Print_Ticket();
-[e ( _Print_Ticket ..  ]
 "119
 [; ;main.c: 119:                 flag_t1 = 0;
 [e = _flag_t1 -> -> 0 `i `uc ]
@@ -5436,108 +5430,159 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 399 ]
 "250
-[; ;main.c: 250: }
+[; ;main.c: 250:     if(!PORTEbits.RE1){
+[e $ ! ! != -> . . _PORTEbits 0 1 `i -> 0 `i 408  ]
+{
+"251
+[; ;main.c: 251:         if(configuracion){
+[e $ ! != -> _configuracion `i -> 0 `i 409  ]
+{
+"252
+[; ;main.c: 252:             Minuto++;
+[e ++ _Minuto -> -> 1 `i `uc ]
+"253
+[; ;main.c: 253:             if(Minuto>=60){
+[e $ ! >= -> _Minuto `i -> 60 `i 410  ]
+{
+"254
+[; ;main.c: 254:                 Minuto = 0;
+[e = _Minuto -> -> 0 `i `uc ]
+"255
+[; ;main.c: 255:                 Hora++;
+[e ++ _Hora -> -> 1 `i `uc ]
+"256
+[; ;main.c: 256:                 if(Hora>=24) Hora = 0;
+[e $ ! >= -> _Hora `i -> 24 `i 411  ]
+[e = _Hora -> -> 0 `i `uc ]
+[e :U 411 ]
+"257
+[; ;main.c: 257:             }
+}
+[e :U 410 ]
+"258
+[; ;main.c: 258:             _delay((unsigned long)((200)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"259
+[; ;main.c: 259:             while(!PORTEbits.RE1);
+[e $U 412  ]
+[e :U 413 ]
+[e :U 412 ]
+[e $ ! != -> . . _PORTEbits 0 1 `i -> 0 `i 413  ]
+[e :U 414 ]
+"260
+[; ;main.c: 260:         }
+}
+[e :U 409 ]
+"261
+[; ;main.c: 261:     }
+}
+[e :U 408 ]
+"262
+[; ;main.c: 262: }
 [e :UE 398 ]
 }
-"253
-[; ;main.c: 253: void Print_Ticket(void){
+"265
+[; ;main.c: 265: void Print_Ticket(void){
 [v _Print_Ticket `(v ~T0 @X0 1 ef ]
 {
 [e :U _Print_Ticket ]
 [f ]
-"254
-[; ;main.c: 254:     Hora = bcd_to_decimal(Hora);
-[e = _Hora ( _bcd_to_decimal (1 _Hora ]
-"255
-[; ;main.c: 255:     Minuto = bcd_to_decimal(Minuto);
-[e = _Minuto ( _bcd_to_decimal (1 _Minuto ]
-"256
-[; ;main.c: 256:     Segundo = bcd_to_decimal(Segundo);
-[e = _Segundo ( _bcd_to_decimal (1 _Segundo ]
-"257
-[; ;main.c: 257:     sprintf(sms,"%d%d:",Hora/10,Hora%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 10C / -> _Hora `i -> 10 `i % -> _Hora `i -> 10 `i ]
-"258
-[; ;main.c: 258:     UART_Print(sms);
-[e ( _UART_Print (1 &U _sms ]
-"259
-[; ;main.c: 259:     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 11C / -> _Minuto `i -> 10 `i % -> _Minuto `i -> 10 `i ]
-"260
-[; ;main.c: 260:     UART_Print(sms);
-[e ( _UART_Print (1 &U _sms ]
-"261
-[; ;main.c: 261:     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
-[e ( _sprintf (1 , , (. , &U _sms :s 12C / -> _Segundo `i -> 10 `i % -> _Segundo `i -> 10 `i ]
-"262
-[; ;main.c: 262:     UART_Println(sms);
-[e ( _UART_Println (1 &U _sms ]
-"263
-[; ;main.c: 263: }
-[e :UE 408 ]
-}
 "266
-[; ;main.c: 266: void CHECK_TAG(void){
+[; ;main.c: 266:     Hora = bcd_to_decimal(Hora);
+[e = _Hora ( _bcd_to_decimal (1 _Hora ]
+"267
+[; ;main.c: 267:     Minuto = bcd_to_decimal(Minuto);
+[e = _Minuto ( _bcd_to_decimal (1 _Minuto ]
+"268
+[; ;main.c: 268:     Segundo = bcd_to_decimal(Segundo);
+[e = _Segundo ( _bcd_to_decimal (1 _Segundo ]
+"269
+[; ;main.c: 269:     sprintf(sms,"%d%d:",Hora/10,Hora%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 10C / -> _Hora `i -> 10 `i % -> _Hora `i -> 10 `i ]
+"270
+[; ;main.c: 270:     UART_Print(sms);
+[e ( _UART_Print (1 &U _sms ]
+"271
+[; ;main.c: 271:     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 11C / -> _Minuto `i -> 10 `i % -> _Minuto `i -> 10 `i ]
+"272
+[; ;main.c: 272:     UART_Print(sms);
+[e ( _UART_Print (1 &U _sms ]
+"273
+[; ;main.c: 273:     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
+[e ( _sprintf (1 , , (. , &U _sms :s 12C / -> _Segundo `i -> 10 `i % -> _Segundo `i -> 10 `i ]
+"274
+[; ;main.c: 274:     UART_Println(sms);
+[e ( _UART_Println (1 &U _sms ]
+"275
+[; ;main.c: 275: }
+[e :UE 415 ]
+}
+"278
+[; ;main.c: 278: void CHECK_TAG(void){
 [v _CHECK_TAG `(v ~T0 @X0 1 ef ]
 {
 [e :U _CHECK_TAG ]
 [f ]
-"267
-[; ;main.c: 267:    if(MFRC522_isCard(TagType)){
-[e $ ! != -> ( _MFRC522_isCard (1 _TagType `i -> 0 `i 410  ]
+"279
+[; ;main.c: 279:    if(MFRC522_isCard(TagType)){
+[e $ ! != -> ( _MFRC522_isCard (1 _TagType `i -> 0 `i 417  ]
 {
-"268
-[; ;main.c: 268:       if(MFRC522_ReadCardSerial(UID)){
-[e $ ! != -> ( _MFRC522_ReadCardSerial (1 &U _UID `i -> 0 `i 411  ]
+"280
+[; ;main.c: 280:       if(MFRC522_ReadCardSerial(UID)){
+[e $ ! != -> ( _MFRC522_ReadCardSerial (1 &U _UID `i -> 0 `i 418  ]
 {
-"269
-[; ;main.c: 269:          UART_Println("ID: ");
+"281
+[; ;main.c: 281:          UART_Println("ID: ");
 [e ( _UART_Println (1 :s 13C ]
-"270
-[; ;main.c: 270:          int i = 0;
+"282
+[; ;main.c: 282:          int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"271
-[; ;main.c: 271:          char buf[20];
+"283
+[; ;main.c: 283:          char buf[20];
 [v _buf `uc ~T0 @X0 -> 20 `i a ]
-"272
-[; ;main.c: 272:          for(i=0; i<5; i++){
+"284
+[; ;main.c: 284:          for(i=0; i<5; i++){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 412  ]
-[e $U 413  ]
-[e :U 412 ]
+[e $ < _i -> 5 `i 419  ]
+[e $U 420  ]
+[e :U 419 ]
 {
-"273
-[; ;main.c: 273:             Aux[i] = UID[i];
+"285
+[; ;main.c: 285:             Aux[i] = UID[i];
 [e = *U + &U _Aux * -> -> _i `ui `ux -> -> # *U &U _Aux `ui `ux *U + &U _UID * -> -> _i `ui `ux -> -> # *U &U _UID `ui `ux ]
-"274
-[; ;main.c: 274:          }
+"286
+[; ;main.c: 286:             Print_Ticket();
+[e ( _Print_Ticket ..  ]
+"287
+[; ;main.c: 287:          }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 412  ]
-[e :U 413 ]
+[e $ < _i -> 5 `i 419  ]
+[e :U 420 ]
 }
-"275
-[; ;main.c: 275:          Registro_busqueda(Aux);
+"288
+[; ;main.c: 288:          Registro_busqueda(Aux);
 [e ( _Registro_busqueda (1 &U _Aux ]
-"276
-[; ;main.c: 276:          MFRC522_Clear_UID(UID);
+"289
+[; ;main.c: 289:          MFRC522_Clear_UID(UID);
 [e ( _MFRC522_Clear_UID (1 &U _UID ]
-"277
-[; ;main.c: 277:       }
+"290
+[; ;main.c: 290:       }
 }
-[e :U 411 ]
-"278
-[; ;main.c: 278:       MFRC522_Halt();
+[e :U 418 ]
+"291
+[; ;main.c: 291:       MFRC522_Halt();
 [e ( _MFRC522_Halt ..  ]
-"279
-[; ;main.c: 279:    }
+"292
+[; ;main.c: 292:    }
 }
-[e :U 410 ]
-"280
-[; ;main.c: 280: }
-[e :UE 409 ]
+[e :U 417 ]
+"293
+[; ;main.c: 293: }
+[e :UE 416 ]
 }
 [p f _sprintf 8388736 ]
 [a 1C 72 111 108 97 32 109 117 110 100 111 0 ]

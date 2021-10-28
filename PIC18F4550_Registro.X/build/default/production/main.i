@@ -6153,12 +6153,12 @@ unsigned char Segundox = 0;
 unsigned char Hora = 22;
 unsigned char Minuto = 49;
 unsigned char Segundo = 1;
-unsigned char anio = 0;
-unsigned char mes = 0;
-unsigned char dia = 0;
-unsigned char aniox = 20;
+unsigned char anio = 21;
+unsigned char mes = 10;
+unsigned char dia = 28;
+unsigned char aniox = 21;
 unsigned char mesx = 10;
-unsigned char diax = 1;
+unsigned char diax = 28;
 
 
 void Print_Ticket(void);
@@ -6235,7 +6235,7 @@ void main(void) {
 
             if(flag_t1){
                 get_RTC();
-                Print_Ticket();
+
                 flag_t1 = 0;
             }
 
@@ -6367,6 +6367,18 @@ void get_key(void){
             while(!PORTEbits.RE0);
         }
     }
+    if(!PORTEbits.RE1){
+        if(configuracion){
+            Minuto++;
+            if(Minuto>=60){
+                Minuto = 0;
+                Hora++;
+                if(Hora>=24) Hora = 0;
+            }
+            _delay((unsigned long)((200)*(8000000/4000.0)));
+            while(!PORTEbits.RE1);
+        }
+    }
 }
 
 
@@ -6391,6 +6403,7 @@ void CHECK_TAG(void){
          char buf[20];
          for(i=0; i<5; i++){
             Aux[i] = UID[i];
+            Print_Ticket();
          }
          Registro_busqueda(Aux);
          MFRC522_Clear_UID(UID);
