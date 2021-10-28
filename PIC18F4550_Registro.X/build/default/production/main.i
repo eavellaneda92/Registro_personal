@@ -6144,9 +6144,9 @@ char *TagType;
     void EEPROM_setRegistro(unsigned int registro);
     int Registro_busqueda(char aux[5]);
 # 18 "main.c" 2
-
-
-
+# 28 "main.c"
+void get_key(void);
+char configuracion = 0;
 unsigned char Horax = 0;
 unsigned char Minutox = 0;
 unsigned char Segundox = 0;
@@ -6200,6 +6200,7 @@ void main(void) {
     OSCCONbits.IRCF = 0b111;
 
     ADCON1 = 0x0F;
+    TRISE = 0xF;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
@@ -6229,14 +6230,19 @@ void main(void) {
     }
 
     while(1){
+        get_key();
+        if(configuracion == 0){
 
-        if(flag_t1){
-            get_RTC();
-            Print_Ticket();
-            flag_t1 = 0;
+            if(flag_t1){
+                get_RTC();
+                Print_Ticket();
+                flag_t1 = 0;
+            }
+
+            CHECK_TAG();
+        }else{
+
         }
-
-        CHECK_TAG();
     }
 }
 
@@ -6342,6 +6348,25 @@ void set_RTC(void){
       I2C_Write_DS(anio);
       I2C_Stop_DS();
       _delay((unsigned long)((6)*(8000000/4000.0)));
+}
+void get_key(void){
+    if(!PORTEbits.RE0){
+        if(configuracion == 0){
+            configuracion = 1;
+            LATDbits.LATD6 = 1;
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+            LATDbits.LATD6 = 0;
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+            while(!PORTEbits.RE0);
+        }else{
+            configuracion = 1;
+            LATDbits.LATD6 = 1;
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+            LATDbits.LATD6 = 0;
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+            while(!PORTEbits.RE0);
+        }
+    }
 }
 
 

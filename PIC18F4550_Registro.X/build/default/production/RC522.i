@@ -5723,8 +5723,8 @@ unsigned char MFRC522_Rd(unsigned char Address)
 
 
 
-   LATCbits.LATC1 = 0;
    LATCbits.LATC2 = 0;
+   LATCbits.LATC1 = 0;
    ucAddr = ( (Address<<1)&0x7E)|0x80;
 
    for (i = 8; i > 0; i--)
@@ -5732,32 +5732,32 @@ unsigned char MFRC522_Rd(unsigned char Address)
 
 
        if((ucAddr&0x80) == 0x80){
-           LATDbits.LATD3 = 1;
+           LATDbits.LATD0 = 1;
        }
        else{
-           LATDbits.LATD3 = 0;
+           LATDbits.LATD0 = 0;
        }
-       LATCbits.LATC1 = 1;
+       LATCbits.LATC2 = 1;
        ucAddr <<= 1;
 
-       LATCbits.LATC1 = 0;
+       LATCbits.LATC2 = 0;
    }
 
    for (i = 8; i > 0; i--)
    {
 
-      LATCbits.LATC1 = 1;
+      LATCbits.LATC2 = 1;
       ucResult <<= 1;
-      ucResult|= PORTDbits.RD2;
+      ucResult|= PORTDbits.RD1;
 
-      LATCbits.LATC1 = 0;
+      LATCbits.LATC2 = 0;
    }
 
 
 
-   LATCbits.LATC2 = 1;
-
    LATCbits.LATC1 = 1;
+
+   LATCbits.LATC2 = 1;
    return (unsigned char)ucResult;
 }
 void MFRC522_Wr(unsigned char Address, unsigned char value)
@@ -5765,35 +5765,35 @@ void MFRC522_Wr(unsigned char Address, unsigned char value)
 
    unsigned char i, ucAddr;
 
-   LATCbits.LATC1 = 0;
-
    LATCbits.LATC2 = 0;
+
+   LATCbits.LATC1 = 0;
    ucAddr = ( (Address<<1)&0x7E);
    for(i = 8; i > 0; i--){
 
-        if((ucAddr&0x80) == 0x80) LATDbits.LATD3 = 1;
-        else LATDbits.LATD3 = 0;
+        if((ucAddr&0x80) == 0x80) LATDbits.LATD0 = 1;
+        else LATDbits.LATD0 = 0;
 
-        LATCbits.LATC1 = 1;
+        LATCbits.LATC2 = 1;
         ucAddr <<= 1;
 
-        LATCbits.LATC1 = 0;
+        LATCbits.LATC2 = 0;
    }
    for(i = 8; i > 0; i--)
    {
 
-       if((value&0x80) == 0x80) LATDbits.LATD3 = 1;
-       else LATDbits.LATD3 = 0;
+       if((value&0x80) == 0x80) LATDbits.LATD0 = 1;
+       else LATDbits.LATD0 = 0;
 
-       LATCbits.LATC1 = 1;
+       LATCbits.LATC2 = 1;
        value <<= 1;
 
-       LATCbits.LATC1 = 0;
+       LATCbits.LATC2 = 0;
    }
 
-   LATCbits.LATC2 = 1;
-
    LATCbits.LATC1 = 1;
+
+   LATCbits.LATC2 = 1;
 }
 static void MFRC522_Clear_Bit( char addr, char mask )
 { unsigned char tmp =0x0;
@@ -5809,13 +5809,13 @@ void MFRC522_Reset(void)
 {
 
 
-   LATDbits.LATD0 = 1;
+   LATDbits.LATD3 = 1;
    _delay((unsigned long)((1)*(8000000/4000000.0)));
 
-   LATDbits.LATD0 = 0;
+   LATDbits.LATD3 = 0;
    _delay((unsigned long)((1)*(8000000/4000000.0)));
 
-   LATDbits.LATD0 = 1;
+   LATDbits.LATD3 = 1;
    _delay((unsigned long)((1)*(8000000/4000000.0)));
    MFRC522_Wr( 0x01, 0x0F );
    _delay((unsigned long)((1)*(8000000/4000000.0)));
@@ -5833,16 +5833,16 @@ MFRC522_Clear_Bit( 0x14, 0x03 );
 }
 void MFRC522_Init(void)
 {
-    TRISCbits.RC2 = 0;
     TRISCbits.RC1 = 0;
-    TRISDbits.RD3 = 0;
-    TRISDbits.RD2 = 1;
+    TRISCbits.RC2 = 0;
     TRISDbits.RD0 = 0;
+    TRISDbits.RD1 = 1;
+    TRISDbits.RD3 = 0;
 
 
 
-     LATCbits.LATC2 = 1;
-     LATDbits.LATD0 = 1;
+     LATCbits.LATC1 = 1;
+     LATDbits.LATD3 = 1;
      MFRC522_Reset();
      MFRC522_Wr( 0x2A, 0x8D );
      MFRC522_Wr( 0x2B, 0x3E );

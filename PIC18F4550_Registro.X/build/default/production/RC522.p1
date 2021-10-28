@@ -690,11 +690,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ucResult `ui ~T0 @X0 1 a ]
 [e = _ucResult -> -> 0 `i `ui ]
 "11
-[; ;RC522.c: 11:    LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"12
-[; ;RC522.c: 12:    LATCbits.LATC2 = 0;
+[; ;RC522.c: 11:    LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"12
+[; ;RC522.c: 12:    LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 "13
 [; ;RC522.c: 13:    ucAddr = ( (Address<<1)&0x7E)|0x80;
 [e = _ucAddr -> | & << -> _Address `i -> 1 `i -> 126 `i -> 128 `i `ui ]
@@ -713,8 +713,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == & _ucAddr -> -> 128 `i `ui -> -> 128 `i `ui 371  ]
 {
 "20
-[; ;RC522.c: 20:            LATDbits.LATD3 = 1;
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+[; ;RC522.c: 20:            LATDbits.LATD0 = 1;
+[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 "21
 [; ;RC522.c: 21:        }
 }
@@ -724,21 +724,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 371 ]
 {
 "23
-[; ;RC522.c: 23:            LATDbits.LATD3 = 0;
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+[; ;RC522.c: 23:            LATDbits.LATD0 = 0;
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 "24
 [; ;RC522.c: 24:        }
 }
 [e :U 372 ]
 "25
-[; ;RC522.c: 25:        LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;RC522.c: 25:        LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "26
 [; ;RC522.c: 26:        ucAddr <<= 1;
 [e =<< _ucAddr -> -> 1 `i `ui ]
 "28
-[; ;RC522.c: 28:        LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;RC522.c: 28:        LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 "29
 [; ;RC522.c: 29:    }
 }
@@ -757,17 +757,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;RC522.c: 32:    {
 {
 "34
-[; ;RC522.c: 34:       LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;RC522.c: 34:       LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "35
 [; ;RC522.c: 35:       ucResult <<= 1;
 [e =<< _ucResult -> -> 1 `i `ui ]
 "36
-[; ;RC522.c: 36:       ucResult|= PORTDbits.RD2;
-[e =| _ucResult -> . . _PORTDbits 0 2 `ui ]
+[; ;RC522.c: 36:       ucResult|= PORTDbits.RD1;
+[e =| _ucResult -> . . _PORTDbits 0 1 `ui ]
 "38
-[; ;RC522.c: 38:       LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;RC522.c: 38:       LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 "39
 [; ;RC522.c: 39:    }
 }
@@ -776,11 +776,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 374 ]
 }
 "43
-[; ;RC522.c: 43:    LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"45
-[; ;RC522.c: 45:    LATCbits.LATC1 = 1;
+[; ;RC522.c: 43:    LATCbits.LATC1 = 1;
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"45
+[; ;RC522.c: 45:    LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "46
 [; ;RC522.c: 46:    return (unsigned char)ucResult;
 [e ) -> _ucResult `uc ]
@@ -808,11 +808,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _i `uc ~T0 @X0 1 a ]
 [v _ucAddr `uc ~T0 @X0 1 a ]
 "53
-[; ;RC522.c: 53:    LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"55
-[; ;RC522.c: 55:    LATCbits.LATC2 = 0;
+[; ;RC522.c: 53:    LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"55
+[; ;RC522.c: 55:    LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 "56
 [; ;RC522.c: 56:    ucAddr = ( (Address<<1)&0x7E);
 [e = _ucAddr -> & << -> _Address `i -> 1 `i -> 126 `i `uc ]
@@ -825,24 +825,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 377 ]
 {
 "59
-[; ;RC522.c: 59:         if((ucAddr&0x80) == 0x80) LATDbits.LATD3 = 1;
+[; ;RC522.c: 59:         if((ucAddr&0x80) == 0x80) LATDbits.LATD0 = 1;
 [e $ ! == & -> _ucAddr `i -> 128 `i -> 128 `i 380  ]
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 [e $U 381  ]
 "60
-[; ;RC522.c: 60:         else LATDbits.LATD3 = 0;
+[; ;RC522.c: 60:         else LATDbits.LATD0 = 0;
 [e :U 380 ]
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 [e :U 381 ]
 "62
-[; ;RC522.c: 62:         LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;RC522.c: 62:         LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "63
 [; ;RC522.c: 63:         ucAddr <<= 1;
 [e =<< _ucAddr -> -> 1 `i `uc ]
 "65
-[; ;RC522.c: 65:         LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;RC522.c: 65:         LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 "66
 [; ;RC522.c: 66:    }
 }
@@ -861,24 +861,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;RC522.c: 68:    {
 {
 "70
-[; ;RC522.c: 70:        if((value&0x80) == 0x80) LATDbits.LATD3 = 1;
+[; ;RC522.c: 70:        if((value&0x80) == 0x80) LATDbits.LATD0 = 1;
 [e $ ! == & -> _value `i -> 128 `i -> 128 `i 385  ]
-[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
 [e $U 386  ]
 "71
-[; ;RC522.c: 71:        else LATDbits.LATD3 = 0;
+[; ;RC522.c: 71:        else LATDbits.LATD0 = 0;
 [e :U 385 ]
-[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
 [e :U 386 ]
 "73
-[; ;RC522.c: 73:        LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;RC522.c: 73:        LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "74
 [; ;RC522.c: 74:        value <<= 1;
 [e =<< _value -> -> 1 `i `uc ]
 "76
-[; ;RC522.c: 76:        LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;RC522.c: 76:        LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 "77
 [; ;RC522.c: 77:    }
 }
@@ -887,11 +887,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 383 ]
 }
 "79
-[; ;RC522.c: 79:    LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"81
-[; ;RC522.c: 81:    LATCbits.LATC1 = 1;
+[; ;RC522.c: 79:    LATCbits.LATC1 = 1;
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"81
+[; ;RC522.c: 81:    LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 "82
 [; ;RC522.c: 82: }
 [e :UE 376 ]
@@ -957,20 +957,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _MFRC522_Reset ]
 [f ]
 "97
-[; ;RC522.c: 97:    LATDbits.LATD0 = 1;
-[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
+[; ;RC522.c: 97:    LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
 "98
 [; ;RC522.c: 98:    _delay((unsigned long)((1)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "100
-[; ;RC522.c: 100:    LATDbits.LATD0 = 0;
-[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
+[; ;RC522.c: 100:    LATDbits.LATD3 = 0;
+[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
 "101
 [; ;RC522.c: 101:    _delay((unsigned long)((1)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "103
-[; ;RC522.c: 103:    LATDbits.LATD0 = 1;
-[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
+[; ;RC522.c: 103:    LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
 "104
 [; ;RC522.c: 104:    _delay((unsigned long)((1)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
@@ -1029,26 +1029,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _MFRC522_Init ]
 [f ]
 "121
-[; ;RC522.c: 121:     TRISCbits.RC2 = 0;
-[e = . . _TRISCbits 1 2 -> -> 0 `i `uc ]
-"122
-[; ;RC522.c: 122:     TRISCbits.RC1 = 0;
+[; ;RC522.c: 121:     TRISCbits.RC1 = 0;
 [e = . . _TRISCbits 1 1 -> -> 0 `i `uc ]
+"122
+[; ;RC522.c: 122:     TRISCbits.RC2 = 0;
+[e = . . _TRISCbits 1 2 -> -> 0 `i `uc ]
 "123
-[; ;RC522.c: 123:     TRISDbits.RD3 = 0;
-[e = . . _TRISDbits 1 3 -> -> 0 `i `uc ]
-"124
-[; ;RC522.c: 124:     TRISDbits.RD2 = 1;
-[e = . . _TRISDbits 1 2 -> -> 1 `i `uc ]
-"125
-[; ;RC522.c: 125:     TRISDbits.RD0 = 0;
+[; ;RC522.c: 123:     TRISDbits.RD0 = 0;
 [e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
+"124
+[; ;RC522.c: 124:     TRISDbits.RD1 = 1;
+[e = . . _TRISDbits 1 1 -> -> 1 `i `uc ]
+"125
+[; ;RC522.c: 125:     TRISDbits.RD3 = 0;
+[e = . . _TRISDbits 1 3 -> -> 0 `i `uc ]
 "129
-[; ;RC522.c: 129:      LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+[; ;RC522.c: 129:      LATCbits.LATC1 = 1;
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 "130
-[; ;RC522.c: 130:      LATDbits.LATD0 = 1;
-[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
+[; ;RC522.c: 130:      LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
 "131
 [; ;RC522.c: 131:      MFRC522_Reset();
 [e ( _MFRC522_Reset ..  ]

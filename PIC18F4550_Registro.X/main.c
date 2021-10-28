@@ -17,7 +17,16 @@ char sms[10];
 char *TagType; 
 #include "24lc256.h"
 
+//VARIABLES Y FUNCIONES PARA USO DE MEMORIA EEPROM
+
+
 //ESTRUCTURA DE VARIABLES PARA PANTALLA Y RTC
+#define SET     PORTEbits.RE0
+#define UP      PORTEbits.RE1
+#define DOWN    PORTEbits.RE2
+#define BUZZER  LATDbits.LATD6
+void get_key(void);
+char configuracion = 0;
 unsigned char Horax = 0;
 unsigned char Minutox = 0;
 unsigned char Segundox = 0;
@@ -71,6 +80,7 @@ void main(void) {
     OSCCONbits.IRCF = 0b111;
     //ANALOGICO/DIGITAL
     ADCON1 = 0x0F;
+    TRISE = 0xF;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     
@@ -100,14 +110,19 @@ void main(void) {
     }
     
     while(1){
-        //Espera de tiempo para leer tiempo
-        if(flag_t1){
-            get_RTC(); //En esta funcion tambien se imprime el reloj
-            Print_Ticket();
-            flag_t1 = 0;
+        get_key();
+        if(configuracion == 0){
+            //Espera de tiempo para leer tiempo
+            if(flag_t1){
+                get_RTC(); //En esta funcion tambien se imprime el reloj
+                Print_Ticket();
+                flag_t1 = 0;
+            }
+            //Lectura de TARJETA
+            CHECK_TAG();
+        }else{
+            
         }
-        //Lectura de TARJETA
-        CHECK_TAG();
     }
 }
 
@@ -213,6 +228,25 @@ void set_RTC(void){
       I2C_Write_DS(anio);    
       I2C_Stop_DS();   
       __delay_ms(6);
+}
+void get_key(void){
+    if(!SET){
+        if(configuracion == 0){
+            configuracion = 1;
+            BUZZER = 1;
+            __delay_ms(300);
+            BUZZER = 0;
+            __delay_ms(300);
+            while(!SET);
+        }else{
+            configuracion = 1;
+            BUZZER = 1;
+            __delay_ms(300);
+            BUZZER = 0;
+            __delay_ms(300);
+            while(!SET);
+        }
+    }
 }
 
 //Funcion Impresora

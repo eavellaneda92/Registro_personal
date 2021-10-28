@@ -107,16 +107,16 @@ extern "C" {
 #define     RESERVED33            0x3E  
 #define     RESERVED34            0x3F
     
-#define MFRC522_CS      LATCbits.LATC2              // Pin SDA
-#define MFRC522_S_CS    TRISCbits.RC2
-#define MFRC522_SCK     LATCbits.LATC1              // Pin SCK
-#define MFRC522_S_SCK   TRISCbits.RC1
-#define MFRC522_SI      LATDbits.LATD3              // Pin MOSI
-#define MFRC522_S_SI    TRISDbits.RD3
-#define MFRC522_SO      PORTDbits.RD2               // Pin MISO
-#define MFRC522_S_SO    TRISDbits.RD2
-#define MFRC522_RST     LATDbits.LATD0              // Pin RST
-#define MFRC522_S_RST   TRISDbits.RD0
+#define MFRC522_CS      LATCbits.LATC1              // Pin SDA
+#define MFRC522_S_CS    TRISCbits.RC1
+#define MFRC522_SCK     LATCbits.LATC2              // Pin SCK
+#define MFRC522_S_SCK   TRISCbits.RC2
+#define MFRC522_SI      LATDbits.LATD0              // Pin MOSI
+#define MFRC522_S_SI    TRISDbits.RD0
+#define MFRC522_SO      PORTDbits.RD1               // Pin MISO
+#define MFRC522_S_SO    TRISDbits.RD1
+#define MFRC522_RST     LATDbits.LATD3              // Pin RST
+#define MFRC522_S_RST   TRISDbits.RD3
 
 unsigned char MFRC522_Rd(unsigned char Address);
 void MFRC522_Wr(unsigned char Address, unsigned char value);
