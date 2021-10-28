@@ -941,7 +941,7 @@ bssBANK0 60 EC BANK0 60 1
 %locals
 dist/default/production\PIC18F4550_Registro.X.production.o
 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h
-C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
+C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
 6836 2CDE 0 CODE 0
 6838 2CDE 0 CODE 0
 6841 2CDE 0 CODE 0
@@ -2190,7 +2190,7 @@ RC522.c
 340 2DAE 0 CODE 0
 341 2DBE 0 CODE 0
 342 2DDE 0 CODE 0
-C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
+C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
 22610 8 0 CODE 0
 main.c
 67 8 0 CODE 0

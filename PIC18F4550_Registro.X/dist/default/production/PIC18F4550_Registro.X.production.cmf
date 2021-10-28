@@ -11,11 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-idloc IDLOC 5 200000 200000 8 1
-init CODE 0 E E 4 1
-reset_vec CODE 0 0 0 4 1
-config CONFIG 4 300000 300000 E 1
 $dist/default/production\PIC18F4550_Registro.X.production.o
 cinit CODE 0 2CDE 2CDE 44 1
 idloc IDLOC 5 200000 200000 8 1
@@ -113,6 +108,11 @@ dataBANK0 BANK0 1 E5 E5 8 1
 bssCOMRAM COMRAM 1 5A 5A 5 1
 mediumconst MEDIUMCONST 0 7088 7088 F78 1
 config CONFIG 4 300000 300000 E 1
+$C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+idloc IDLOC 5 200000 200000 8 1
+init CODE 0 E E 4 1
+reset_vec CODE 0 0 0 4 1
+config CONFIG 4 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -152,7 +152,7 @@ MEDIUMCONST 3250-7087 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PIC18F4550_Registro.X.production.o
-8 intcode CODE >22610:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
+8 intcode CODE >22610:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
 8 intcode CODE >67:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
 2C98 intcode_body CODE >67:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
 2C9A intcode_body CODE >68:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
@@ -1293,41 +1293,41 @@ FA0 text14 CODE >37:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC1
 1C66 text0 CODE >119:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
 1C6A text0 CODE >122:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
 1C6E text0 CODE >123:C:\Users\EAVELLANEDA\Documents\GitHub\Registro_personal\PIC18F4550_Registro.X\main.c
-2CDE cinit CODE >6836:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CDE cinit CODE >6838:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CDE cinit CODE >6841:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CDE cinit CODE >6959:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CE0 cinit CODE >6960:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CE2 cinit CODE >6961:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CE4 cinit CODE >6962:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CE6 cinit CODE >6963:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CE8 cinit CODE >6964:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CEA cinit CODE >6965:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CEE cinit CODE >6966:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CF2 cinit CODE >6967:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CF2 cinit CODE >6968:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CF4 cinit CODE >6969:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CF8 cinit CODE >6970:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CFA cinit CODE >6971:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CFC cinit CODE >6972:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2CFE cinit CODE >6976:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D02 cinit CODE >6977:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D04 cinit CODE >6978:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D04 cinit CODE >6979:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D06 cinit CODE >6980:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D08 cinit CODE >6981:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D0A cinit CODE >6984:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D0C cinit CODE >6985:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D0E cinit CODE >6986:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D10 cinit CODE >6987:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D12 cinit CODE >6988:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D14 cinit CODE >6994:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D14 cinit CODE >6996:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D16 cinit CODE >6997:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D18 cinit CODE >6999:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D1A cinit CODE >7000:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D1C cinit CODE >7001:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
-2D1E cinit CODE >7002:C:\Users\EAVELL~1\AppData\Local\Temp\suc.s
+2CDE cinit CODE >6836:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CDE cinit CODE >6838:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CDE cinit CODE >6841:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CDE cinit CODE >6959:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CE0 cinit CODE >6960:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CE2 cinit CODE >6961:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CE4 cinit CODE >6962:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CE6 cinit CODE >6963:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CE8 cinit CODE >6964:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CEA cinit CODE >6965:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CEE cinit CODE >6966:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CF2 cinit CODE >6967:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CF2 cinit CODE >6968:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CF4 cinit CODE >6969:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CF8 cinit CODE >6970:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CFA cinit CODE >6971:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CFC cinit CODE >6972:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2CFE cinit CODE >6976:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D02 cinit CODE >6977:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D04 cinit CODE >6978:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D04 cinit CODE >6979:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D06 cinit CODE >6980:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D08 cinit CODE >6981:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D0A cinit CODE >6984:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D0C cinit CODE >6985:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D0E cinit CODE >6986:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D10 cinit CODE >6987:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D12 cinit CODE >6988:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D14 cinit CODE >6994:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D14 cinit CODE >6996:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D16 cinit CODE >6997:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D18 cinit CODE >6999:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D1A cinit CODE >7000:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D1C cinit CODE >7001:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
+2D1E cinit CODE >7002:C:\Users\EAVELL~1\AppData\Local\Temp\smmg.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1362,7 +1362,7 @@ _MFRC522_Clear_UID 2DA6 0 CODE 0 text82 dist/default/production\PIC18F4550_Regis
 _CHECK_TAG 22E6 0 CODE 0 text59 dist/default/production\PIC18F4550_Registro.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\PIC18F4550_Registro.X.production.o
 MFRC522_Clear_UID@j 3 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
-__mediumconst 7088 0 MEDIUMCONST 0 mediumconst C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+__mediumconst 7088 0 MEDIUMCONST 0 mediumconst C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\PIC18F4550_Registro.X.production.o
 MFRC522_Halt@unLen 24 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 _T1CONbits FCD 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1379,7 +1379,7 @@ _Hora EC 0 BANK0 1 dataBANK0 dist/default/production\PIC18F4550_Registro.X.produ
 _RCEN 7E2B 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 _RSEN 7E29 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 _TMR1 FCE 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+___sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 _anio 96 0 BANK0 1 bssBANK0 dist/default/production\PIC18F4550_Registro.X.production.o
 _dbuf 9A 0 BANK0 1 bssBANK0 dist/default/production\PIC18F4550_Registro.X.production.o
 _diax E7 0 BANK0 1 dataBANK0 dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1395,7 +1395,7 @@ btemp 5F 0 COMRAM 1 temp dist/default/production\PIC18F4550_Registro.X.productio
 pad@i 18 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 pad@p 15 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 pad@w 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
-start E 0 CODE 0 init C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+start E 0 CODE 0 init C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 _Segundo EA 0 BANK0 1 dataBANK0 dist/default/production\PIC18F4550_Registro.X.production.o
 ___aomod@counter 11 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 __size_of_Registro_busqueda 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1444,11 +1444,11 @@ __size_of_vfpfcnvrt 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.pr
 __end_of_OLEDClear 2B68 0 CODE 0 text46 dist/default/production\PIC18F4550_Registro.X.production.o
 OLED_NPuts@buffer 7 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 __end_of_OLED_Init 22E6 0 CODE 0 text48 dist/default/production\PIC18F4550_Registro.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-intlevel0 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-intlevel1 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-intlevel2 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-intlevel3 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+__accesstop 60 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+intlevel0 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+intlevel1 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+intlevel2 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+intlevel3 0 0 CODE 0 text C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 __size_of_OLEDClear 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 __size_of_MFRC522_isCard 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 __end_of_MFRC522_Request 299E 0 CODE 0 text72 dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1481,8 +1481,8 @@ OLED_SPuts@valve 12 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_R
 _ADCON1 FC1 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 MFRC522_Wr@value 1 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 ___awdiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 __size_of_I2C_Stop_DS 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 _bcd_to_decimal 31C6 0 CODE 0 text23 dist/default/production\PIC18F4550_Registro.X.production.o
 _I2C_Init 3052 0 CODE 0 text50 dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1624,7 +1624,7 @@ _SMALL_FONTS 7C69 0 MEDIUMCONST 0 mediumconst dist/default/production\PIC18F4550
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\PIC18F4550_Registro.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\PIC18F4550_Registro.X.production.o
 __end_of_OLEDsetCursor 30EE 0 CODE 0 text47 dist/default/production\PIC18F4550_Registro.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 ___xxtofl@arg B 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 ___xxtofl@exp A 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 ___xxtofl@val 1 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
@@ -1978,8 +1978,8 @@ __Lfardata 0 0 FARRAM 0 fardata dist/default/production\PIC18F4550_Registro.X.pr
 __size_of_I2C_Start_DS 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 ___fldiv@new_exp 12 0 COMRAM 1 cstackCOMRAM dist/default/production\PIC18F4550_Registro.X.production.o
 __size_of_vfprintf 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
-stackhi 7FF 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
-stacklo ED 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+stackhi 7FF 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
+stacklo ED 0 ABS 0 - C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 __end_of_MFRC522_CRC 242C 0 CODE 0 text77 dist/default/production\PIC18F4550_Registro.X.production.o
 __size_of_EEPROM_setRegistro 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\PIC18F4550_Registro.X.production.o
@@ -2152,7 +2152,7 @@ __Ltext81 0 0 ABS 0 text81 dist/default/production\PIC18F4550_Registro.X.product
 __Ltext82 0 0 ABS 0 text82 dist/default/production\PIC18F4550_Registro.X.production.o
 __end_of_Print_Minuto 28CE 0 CODE 0 text27 dist/default/production\PIC18F4550_Registro.X.production.o
 __size_of_Print_Ticket 0 0 ABS 0 - dist/default/production\PIC18F4550_Registro.X.production.o
-__ramtop 800 0 RAM 0 ramtop C:\Users\EAVELL~1\AppData\Local\Temp\suc.o
+__ramtop 800 0 RAM 0 ramtop C:\Users\EAVELL~1\AppData\Local\Temp\smmg.o
 _sprintf 2B68 0 CODE 0 text29 dist/default/production\PIC18F4550_Registro.X.production.o
 _MFRC522_Rd 20EA 0 CODE 0 text81 dist/default/production\PIC18F4550_Registro.X.production.o
 _MFRC522_Wr 25D6 0 CODE 0 text80 dist/default/production\PIC18F4550_Registro.X.production.o
