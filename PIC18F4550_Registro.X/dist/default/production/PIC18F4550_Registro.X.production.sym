@@ -851,7 +851,7 @@ text40 2F4C 2F4D CODE 2F4C 0
 %locals
 dist/default/production\PIC18F4550_Registro.X.production.o
 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4550.h
-C:\Users\EAVELL~1\AppData\Local\Temp\sd38.s
+C:\Users\EAVELL~1\AppData\Local\Temp\s84.s
 6870 2AEE 0 CODE 0
 6872 2AEE 0 CODE 0
 6875 2AEE 0 CODE 0
@@ -2007,7 +2007,7 @@ i2c.c
 66 2F24 0 CODE 0
 65 2F24 0 CODE 0
 67 2F32 0 CODE 0
-C:\Users\EAVELL~1\AppData\Local\Temp\sd38.s
+C:\Users\EAVELL~1\AppData\Local\Temp\s84.s
 21562 8 0 CODE 0
 main.c
 68 8 0 CODE 0
