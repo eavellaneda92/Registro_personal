@@ -36,7 +36,7 @@ void MFRC522_Clear_UID(char* u_i);
 #pragma config USBDIV = 1
 
 
-#pragma config FOSC = INTOSC_HS
+#pragma config FOSC = HSPLL_HS
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
 

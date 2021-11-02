@@ -21,7 +21,7 @@
 #pragma config USBDIV = 1
 
 
-#pragma config FOSC = INTOSC_HS
+#pragma config FOSC = HSPLL_HS
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
 
@@ -6171,7 +6171,8 @@ void Print_Minuto(void);
 void Print_Segundo(void);
 void Print_Dia(void);
 void Print_Mes(void);
-void Print_anio(void);
+void Print_Anio(void);
+void Print_config(void);
 
 
 void set_RTC(void);
@@ -6197,10 +6198,12 @@ void __attribute__((picinterrupt(("")))) scr(){
 }
 
 void main(void) {
-    OSCCONbits.IRCF = 0b111;
+
 
     ADCON1 = 0x0F;
     TRISE = 0xF;
+    TRISDbits.RD6 = 0;
+    LATDbits.LATD6 = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
@@ -6210,13 +6213,11 @@ void main(void) {
 
     UART_Init();
     UART_Begin(9600);
-    UART_Println("Hola mundo");
-
+    UART_Println("Inicio");
 
     _delay((unsigned long)((1500)*(8000000/4000.0)));
     OLED_Init();
     Print_Menu();
-    set_RTC();
 
 
     MFRC522_Init();
@@ -6235,12 +6236,10 @@ void main(void) {
 
             if(flag_t1){
                 get_RTC();
-
+                Print_Ticket();
                 flag_t1 = 0;
             }
 
-            CHECK_TAG();
-        }else{
 
         }
     }
@@ -6255,6 +6254,7 @@ void Print_Menu(void){
     Print_Hora();
     Print_Minuto();
     Print_Segundo();
+    Print_config();
 }
 void Print_Hora(void){
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
@@ -6268,17 +6268,25 @@ void Print_Segundo(void){
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     OLED_SPuts(90,5,sms);
 }
-void Print_dia(void){
+void Print_Dia(void){
     sprintf(sms,"%d%d",dia/10,dia%10);
     OLED_SPuts(90,6,sms);
 }
-void Print_mes(void){
-    sprintf(sms,"%d%d",mes/10,mes%10);
+void Print_Mes(void){
+    sprintf(sms,"%d%d-",mes/10,mes%10);
     OLED_SPuts(50,6,sms);
 }
-void Print_anio(void){
-    sprintf(sms,"%d%d",anio/10,anio%10);
+void Print_Anio(void){
+    sprintf(sms,"%d%d-",anio/10,anio%10);
     OLED_SPuts(10,6,sms);
+}
+void Print_config(void){
+    if(configuracion == 0) OLED_SPuts(50,7,"    ");
+    if(configuracion == 1) OLED_SPuts(50,7,"MIN");
+    if(configuracion == 2) OLED_SPuts(50,7,"HORA");
+    if(configuracion == 3) OLED_SPuts(50,7,"DIA");
+    if(configuracion == 4) OLED_SPuts(50,7,"MES");
+    if(configuracion == 5) OLED_SPuts(50,7,"YEAR");
 }
 
 
@@ -6314,16 +6322,16 @@ void get_RTC(void){
     mes = I2C_Read_DS(1);
     anio = I2C_Read_DS(0);
     if(dia != diax){
-        Print_dia();
+        Print_Dia();
         diax = dia;
     }
     if(mes != mesx){
         mesx = mes;
-        Print_mes();
+        Print_Mes();
     }
     if(anio != aniox){
         aniox = anio;
-        Print_anio();
+        Print_Anio();
     }
     I2C_Stop_DS();
 }
@@ -6351,15 +6359,13 @@ void set_RTC(void){
 }
 void get_key(void){
     if(!PORTEbits.RE0){
-        if(configuracion == 0){
-            configuracion = 1;
-            LATDbits.LATD6 = 1;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-            LATDbits.LATD6 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-            while(!PORTEbits.RE0);
-        }else{
-            configuracion = 1;
+        if(!PORTEbits.RE0){
+            configuracion++;
+            if(configuracion >= 6){
+                set_RTC();
+                configuracion = 0;
+            }
+            Print_config();
             LATDbits.LATD6 = 1;
             _delay((unsigned long)((300)*(8000000/4000.0)));
             LATDbits.LATD6 = 0;
@@ -6368,16 +6374,62 @@ void get_key(void){
         }
     }
     if(!PORTEbits.RE1){
-        if(configuracion){
+        if(configuracion == 1){
             Minuto++;
-            if(Minuto>=60){
-                Minuto = 0;
-                Hora++;
-                if(Hora>=24) Hora = 0;
-            }
-            _delay((unsigned long)((200)*(8000000/4000.0)));
-            while(!PORTEbits.RE1);
+            if(Minuto>=60) Minuto = 0;
+            Print_Minuto();
         }
+        if(configuracion == 2){
+            Hora++;
+            if(Hora>=24) Hora = 0;
+            Print_Hora();
+        }
+        if(configuracion == 3){
+            dia++;
+            if(dia>=31) dia = 1;
+            Print_Dia();
+        }
+        if(configuracion == 4){
+            mes++;
+            if(mes>=13) mes = 1;
+            Print_Mes();
+        }
+        if(configuracion == 5){
+            anio++;
+            if(anio>=99) anio = 0;
+            Print_Anio();
+        }
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+        while(!PORTEbits.RE1);
+    }
+    if(!PORTEbits.RE2){
+        if(configuracion == 1){
+            if(Minuto == 0) Minuto = 60;
+            Minuto--;
+            Print_Minuto();
+        }
+        if(configuracion == 2){
+            if(Hora == 0) Hora = 24;
+            Hora--;
+            Print_Hora();
+        }
+        if(configuracion == 3){
+            if(dia == 1) dia = 32;
+            dia--;
+            Print_Dia();
+        }
+        if(configuracion == 4){
+            if(mes == 1) mes = 13;
+            mes--;
+            Print_Mes();
+        }
+        if(configuracion == 5){
+            if(anio == 0) anio = 100;
+            anio--;
+            Print_Anio();
+        }
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+        while(!PORTEbits.RE2);
     }
 }
 
