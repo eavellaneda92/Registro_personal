@@ -120,7 +120,7 @@ void main(void) {
                 flag_t1 = 0;
             }
             //Lectura de TARJETA
-            //CHECK_TAG();
+            CHECK_TAG();
         }
     }
 }
@@ -315,9 +315,10 @@ void get_key(void){
 
 //Funcion Impresora
 void Print_Ticket(void){
-    Hora = bcd_to_decimal(Hora);
-    Minuto = bcd_to_decimal(Minuto);
-    Segundo = bcd_to_decimal(Segundo);
+    Valores[0] = bcd_to_decimal(Valores[0]);
+    Valores[1] = bcd_to_decimal(Valores[1]);
+    Valores[2] = bcd_to_decimal(Valores[2]);
+    
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
@@ -330,14 +331,22 @@ void Print_Ticket(void){
 void CHECK_TAG(void){
    if(MFRC522_isCard(TagType)){              // Verificacion si hay un tag disponible
       if(MFRC522_ReadCardSerial(UID)){       // Lectura y verificacion si encontro algun tag
-         UART_Println("ID: ");
          int i = 0;
-         char buf[20];
          for(i=0; i<5; i++){                  // Imprime la ID en la pantalla LCD
             Aux[i] = UID[i];
-            Print_Ticket();
          }       
-         Registro_busqueda(Aux);
+         unsigned int valor = Registro_busqueda();
+         if(valor == 0){
+            Valores[0] = Hora;
+            Valores[1] = Minuto;
+            Valores[2] = dia;
+            Valores[3] = mes;
+            Valores[4] = anio;
+            Guarda_ID();
+         }else{
+            Muestra_ID(valor);
+         }
+         Print_Ticket(valor);
          MFRC522_Clear_UID(UID);             // Limpia temporalmente la ID
       }
       MFRC522_Halt();                        // Apaga la antena

@@ -100,17 +100,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "128 ./RC522.h
 [; ;./RC522.h: 128: void MFRC522_Init(void);
 [v _MFRC522_Init `(v ~T0 @X0 0 ef ]
-"15 ./24lc256.h
-[; ;./24lc256.h: 15:     unsigned char EEPROM_Read(unsigned int add);
+"18 ./24lc256.h
+[; ;./24lc256.h: 18:     unsigned char EEPROM_Read(unsigned int add);
 [v _EEPROM_Read `(uc ~T0 @X0 0 ef1`ui ]
-"18
-[; ;./24lc256.h: 18:     void EEPROM_setRegistro(unsigned int registro);
+"21
+[; ;./24lc256.h: 21:     void EEPROM_setRegistro(unsigned int registro);
 [v _EEPROM_setRegistro `(v ~T0 @X0 0 ef1`ui ]
-"16
-[; ;./24lc256.h: 16:     void EEPROM_Write(unsigned int add, unsigned char data);
+"19
+[; ;./24lc256.h: 19:     void EEPROM_Write(unsigned int add, unsigned char data);
 [v _EEPROM_Write `(v ~T0 @X0 0 ef2`ui`uc ]
-"17
-[; ;./24lc256.h: 17:     unsigned int EEPROM_getRegistro(void);
+"20
+[; ;./24lc256.h: 20:     unsigned int EEPROM_getRegistro(void);
 [v _EEPROM_getRegistro `(ui ~T0 @X0 0 ef ]
 "28 main.c
 [; ;main.c: 28: void get_key(void);
@@ -121,6 +121,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "44
 [; ;main.c: 44: void Print_Ticket(void);
 [v _Print_Ticket `(v ~T0 @X0 0 ef ]
+"45
+[; ;main.c: 45: void CHECK_TAG(void);
+[v _CHECK_TAG `(v ~T0 @X0 0 ef ]
 "327 ./Oled.h
 [; ;./Oled.h: 327: void OLEDClear(void);
 [v _OLEDClear `(v ~T0 @X0 0 ef ]
@@ -198,9 +201,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "136
 [; ;./RC522.h: 136: char MFRC522_ReadCardSerial( char *str );
 [v _MFRC522_ReadCardSerial `(uc ~T0 @X0 0 ef1`*uc ]
-"19 ./24lc256.h
-[; ;./24lc256.h: 19:     int Registro_busqueda(char aux[5]);
-[v _Registro_busqueda `(i ~T0 @X0 0 ef1`*uc ]
+"22 ./24lc256.h
+[; ;./24lc256.h: 22:     unsigned int Registro_busqueda(void);
+[v _Registro_busqueda `(ui ~T0 @X0 0 ef ]
+"16
+[; ;./24lc256.h: 16:     void Guarda_ID(void);
+[v _Guarda_ID `(v ~T0 @X0 0 ef ]
+"17
+[; ;./24lc256.h: 17:     void Muestra_ID(unsigned int valor);
+[v _Muestra_ID `(v ~T0 @X0 0 ef1`ui ]
 "138 ./RC522.h
 [; ;./RC522.h: 138: void MFRC522_Clear_UID(char* u_i);
 [v _MFRC522_Clear_UID `(v ~T0 @X0 0 ef1`*uc ]
@@ -4743,7 +4752,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 17: char *TagType;
 [v _TagType `*uc ~T0 @X0 1 e ]
 "14 ./24lc256.h
-[; ;./24lc256.h: 14:     char Aux[5];
+[; ;./24lc256.h: 14:     char Valores[5];
+[v _Valores `uc ~T0 @X0 -> 5 `i e ]
+"15
+[; ;./24lc256.h: 15:     char Aux[5];
 [v _Aux `uc ~T0 @X0 -> 5 `i e ]
 "29 main.c
 [; ;main.c: 29: char configuracion = 0;
@@ -4983,6 +4995,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 121:             }
 }
 [e :U 379 ]
+"123
+[; ;main.c: 123:             CHECK_TAG();
+[e ( _CHECK_TAG ..  ]
 "124
 [; ;main.c: 124:         }
 }
@@ -5737,55 +5752,85 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> ( _MFRC522_ReadCardSerial (1 &U _UID `i -> 0 `i 442  ]
 {
 "333
-[; ;main.c: 333:          UART_Println("ID: ");
-[e ( _UART_Println (1 :s 19C ]
-"334
-[; ;main.c: 334:          int i = 0;
+[; ;main.c: 333:          int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"335
-[; ;main.c: 335:          char buf[20];
-[v _buf `uc ~T0 @X0 -> 20 `i a ]
-"336
-[; ;main.c: 336:          for(i=0; i<5; i++){
+"334
+[; ;main.c: 334:          for(i=0; i<5; i++){
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 5 `i 443  ]
 [e $U 444  ]
 [e :U 443 ]
 {
-"337
-[; ;main.c: 337:             Aux[i] = UID[i];
+"335
+[; ;main.c: 335:             Aux[i] = UID[i];
 [e = *U + &U _Aux * -> -> _i `ui `ux -> -> # *U &U _Aux `ui `ux *U + &U _UID * -> -> _i `ui `ux -> -> # *U &U _UID `ui `ux ]
-"338
-[; ;main.c: 338:             Print_Ticket();
-[e ( _Print_Ticket ..  ]
-"339
-[; ;main.c: 339:          }
+"336
+[; ;main.c: 336:          }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 5 `i 443  ]
 [e :U 444 ]
 }
+"337
+[; ;main.c: 337:          unsigned int valor = Registro_busqueda();
+[v _valor `ui ~T0 @X0 1 a ]
+[e = _valor ( _Registro_busqueda ..  ]
+"338
+[; ;main.c: 338:          if(valor == 0){
+[e $ ! == _valor -> -> 0 `i `ui 446  ]
+{
+"339
+[; ;main.c: 339:             Valores[0] = anio;
+[e = *U + &U _Valores * -> -> -> 0 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> _anio `uc ]
 "340
-[; ;main.c: 340:          Registro_busqueda(Aux);
-[e ( _Registro_busqueda (1 &U _Aux ]
+[; ;main.c: 340:             Valores[1] = mes;
+[e = *U + &U _Valores * -> -> -> 1 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> _mes `uc ]
 "341
-[; ;main.c: 341:          MFRC522_Clear_UID(UID);
-[e ( _MFRC522_Clear_UID (1 &U _UID ]
+[; ;main.c: 341:             Valores[2] = dia;
+[e = *U + &U _Valores * -> -> -> 2 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> _dia `uc ]
 "342
-[; ;main.c: 342:       }
+[; ;main.c: 342:             Valores[3] = Hora;
+[e = *U + &U _Valores * -> -> -> 3 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> _Hora `uc ]
+"343
+[; ;main.c: 343:             Valores[4] = Minuto;
+[e = *U + &U _Valores * -> -> -> 4 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> _Minuto `uc ]
+"344
+[; ;main.c: 344:             Guarda_ID();
+[e ( _Guarda_ID ..  ]
+"345
+[; ;main.c: 345:          }else{
+}
+[e $U 447  ]
+[e :U 446 ]
+{
+"346
+[; ;main.c: 346:             Muestra_ID(valor);
+[e ( _Muestra_ID (1 _valor ]
+"347
+[; ;main.c: 347:          }
+}
+[e :U 447 ]
+"348
+[; ;main.c: 348:          Print_Ticket();
+[e ( _Print_Ticket ..  ]
+"349
+[; ;main.c: 349:          MFRC522_Clear_UID(UID);
+[e ( _MFRC522_Clear_UID (1 &U _UID ]
+"350
+[; ;main.c: 350:       }
 }
 [e :U 442 ]
-"343
-[; ;main.c: 343:       MFRC522_Halt();
+"351
+[; ;main.c: 351:       MFRC522_Halt();
 [e ( _MFRC522_Halt ..  ]
-"344
-[; ;main.c: 344:    }
+"352
+[; ;main.c: 352:    }
 }
 [e :U 441 ]
-"345
-[; ;main.c: 345: }
+"353
+[; ;main.c: 353: }
 [e :UE 440 ]
 }
 [p f _sprintf 8388736 ]
@@ -5806,5 +5851,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 17C 37 100 37 100 58 0 ]
 [a 8C 37 100 37 100 45 0 ]
 [a 9C 37 100 37 100 45 0 ]
-[a 19C 73 68 58 32 0 ]
 [a 10C 32 32 32 32 0 ]

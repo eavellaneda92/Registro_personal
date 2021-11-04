@@ -8,9 +8,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;./i2c.h: 16: void I2C_Stop( void );
 [v _I2C_Stop `(v ~T0 @X0 0 ef ]
-[v F3172 `(v ~T0 @X0 1 tf1`ul ]
+[v F3175 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\pic18.h
-[v __delay `JF3172 ~T0 @X0 0 e ]
+[v __delay `JF3175 ~T0 @X0 0 e ]
 [p i __delay ]
 "15 ./i2c.h
 [; ;./i2c.h: 15: void I2C_Restart( void );
@@ -19,7 +19,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./i2c.h: 19: unsigned char I2C_Read ( void );
 [v _I2C_Read `(uc ~T0 @X0 0 ef ]
 "14 ./24lc256.h
-[; ;./24lc256.h: 14:     char Aux[5];
+[; ;./24lc256.h: 14:     char Valores[5];
+[v _Valores `uc ~T0 @X0 -> 5 `i e ]
+"15
+[; ;./24lc256.h: 15:     char Aux[5];
 [v _Aux `uc ~T0 @X0 -> 5 `i e ]
 "16 ./config.h
 [p x PLLDIV  =  2        ]
@@ -636,91 +639,178 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17
 [e :UE 367 ]
 }
-"18
+"19
 [v _EEPROM_Read `(uc ~T0 @X0 1 ef1`ui ]
 {
 [e :U _EEPROM_Read ]
 [v _add `ui ~T0 @X0 1 r1 ]
 [f ]
-"19
-[e ( _I2C_Start ..  ]
 "20
-[e ( _I2C_Send (1 -> -> 160 `i `uc ]
+[e ( _I2C_Start ..  ]
 "21
-[e ( _I2C_Send (1 -> >> _add -> 8 `i `uc ]
+[e ( _I2C_Send (1 -> -> 160 `i `uc ]
 "22
-[e ( _I2C_Send (1 -> _add `uc ]
+[e ( _I2C_Send (1 -> >> _add -> 8 `i `uc ]
 "23
-[e ( _I2C_Restart ..  ]
+[e ( _I2C_Send (1 -> _add `uc ]
 "24
-[e ( _I2C_Send (1 -> -> 161 `i `uc ]
+[e ( _I2C_Restart ..  ]
 "25
-[v _temp `uc ~T0 @X0 1 a ]
+[e ( _I2C_Send (1 -> -> 161 `i `uc ]
 "26
-[e = _temp ( _I2C_Read ..  ]
+[v _temp `uc ~T0 @X0 1 a ]
 "27
+[e = _temp ( _I2C_Read ..  ]
+"28
 [e ) _temp ]
 [e $UE 368  ]
-"28
+"29
 [e :UE 368 ]
 }
-"29
+"31
 [v _EEPROM_getRegistro `(ui ~T0 @X0 1 ef ]
 {
 [e :U _EEPROM_getRegistro ]
 [f ]
-"30
+"32
 [v _registro `ui ~T0 @X0 1 a ]
 [e = _registro -> -> 0 `i `ui ]
-"31
-[e = _registro -> ( _EEPROM_Read (1 -> -> 2 `i `ui `ui ]
-"32
-[e = _registro | << _registro -> 8 `i -> ( _EEPROM_Read (1 -> -> 3 `i `ui `ui ]
 "33
+[e = _registro -> ( _EEPROM_Read (1 -> -> 2 `i `ui `ui ]
+"34
+[e = _registro | << _registro -> 8 `i -> ( _EEPROM_Read (1 -> -> 3 `i `ui `ui ]
+"35
 [e ) _registro ]
 [e $UE 369  ]
-"34
+"36
 [e :UE 369 ]
 }
-"35
+"38
 [v _EEPROM_setRegistro `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _EEPROM_setRegistro ]
 [v _registro `ui ~T0 @X0 1 r1 ]
 [f ]
-"36
+"39
 [e ( _EEPROM_Write (2 , -> -> 2 `i `ui -> / _registro -> -> 100 `i `ui `uc ]
-"37
+"40
 [e ( _EEPROM_Write (2 , -> -> 3 `i `ui -> % _registro -> -> 100 `i `ui `uc ]
-"38
+"41
 [e :UE 370 ]
 }
-"39
-[v _Registro_busqueda `(i ~T0 @X0 1 ef1`*uc ]
+"43
+[v _Guarda_ID `(v ~T0 @X0 1 ef ]
+{
+[e :U _Guarda_ID ]
+[f ]
+"44
+[v _registro `ui ~T0 @X0 1 a ]
+[e = _registro ( _EEPROM_getRegistro ..  ]
+"45
+[e ++ _registro -> -> 1 `i `ui ]
+"46
+[e ( _EEPROM_setRegistro (1 _registro ]
+"47
+[e :UE 371 ]
+}
+"49
+[v _Muestra_ID `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _Muestra_ID ]
+[v _valor `ui ~T0 @X0 1 r1 ]
+[f ]
+"50
+[e = *U + &U _Valores * -> -> -> 0 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 * _valor -> -> 10 `i `ui `uc ]
+"51
+[e = *U + &U _Valores * -> -> -> 1 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 1 `i `ui `uc ]
+"52
+[e = *U + &U _Valores * -> -> -> 2 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 2 `i `ui `uc ]
+"53
+[e = *U + &U _Valores * -> -> -> 3 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 3 `i `ui `uc ]
+"54
+[e = *U + &U _Valores * -> -> -> 4 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 4 `i `ui `uc ]
+"55
+[e = *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 5 `i `ui `uc ]
+"56
+[e = *U + &U _Aux * -> -> -> 1 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 6 `i `ui `uc ]
+"57
+[e = *U + &U _Aux * -> -> -> 2 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 7 `i `ui `uc ]
+"58
+[e = *U + &U _Aux * -> -> -> 3 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 8 `i `ui `uc ]
+"59
+[e = *U + &U _Aux * -> -> -> 4 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 9 `i `ui `uc ]
+"60
+[e :UE 372 ]
+}
+"62
+[v _Registro_busqueda `(ui ~T0 @X0 1 ef ]
 {
 [e :U _Registro_busqueda ]
-[v _aux `*uc ~T0 @X0 1 r1 ]
 [f ]
-"40
-[v _numero `ui ~T0 @X0 1 a ]
-[e = _numero ( _EEPROM_getRegistro ..  ]
-"41
+"63
+[v _registro `ui ~T0 @X0 1 a ]
+[e = _registro ( _EEPROM_getRegistro ..  ]
+"64
 {
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 375  ]
-[e :U 372 ]
+[v _i `ui ~T0 @X0 1 a ]
+[e = _i -> -> 1 `i `ui ]
+[e $U 377  ]
+[e :U 374 ]
 {
-"43
+"65
+[v _datox `uc ~T0 @X0 1 a ]
+[e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 5 `i `ui ]
+"66
+[e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 378  ]
+{
+"67
+[e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 6 `i `ui ]
+"68
+[e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 1 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 379  ]
+{
+"69
+[e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 7 `i `ui ]
+"70
+[e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 2 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 380  ]
+{
+"71
+[e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 8 `i `ui ]
+"72
+[e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 3 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 381  ]
+{
+"73
+[e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 9 `i `ui ]
+"74
+[e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 4 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 382  ]
+{
+"75
+[e ) _i ]
+[e $UE 373  ]
+"76
 }
-[e ++ _i -> 1 `i ]
+[e :U 382 ]
+"77
+}
+[e :U 381 ]
+"78
+}
+[e :U 380 ]
+"79
+}
+[e :U 379 ]
+"80
+}
+[e :U 378 ]
+"81
+}
+[e ++ _i -> -> 1 `i `ui ]
+[e :U 377 ]
+[e $ <= _i _registro 374  ]
 [e :U 375 ]
-[e $ < -> _i `ui _numero 372  ]
-[e :U 373 ]
 }
-"44
-[e ) -> 1 `i ]
-[e $UE 371  ]
-"45
-[e :UE 371 ]
+"82
+[e ) -> -> 0 `i `ui ]
+[e $UE 373  ]
+"83
+[e :UE 373 ]
 }

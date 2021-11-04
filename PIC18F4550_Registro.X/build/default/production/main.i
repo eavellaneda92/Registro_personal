@@ -6137,12 +6137,15 @@ char *TagType;
 
 # 1 "./24lc256.h" 1
 # 14 "./24lc256.h"
+    char Valores[5];
     char Aux[5];
+    void Guarda_ID(void);
+    void Muestra_ID(unsigned int valor);
     unsigned char EEPROM_Read(unsigned int add);
     void EEPROM_Write(unsigned int add, unsigned char data);
     unsigned int EEPROM_getRegistro(void);
     void EEPROM_setRegistro(unsigned int registro);
-    int Registro_busqueda(char aux[5]);
+    unsigned int Registro_busqueda(void);
 # 18 "main.c" 2
 # 28 "main.c"
 void get_key(void);
@@ -6240,7 +6243,7 @@ void main(void) {
                 flag_t1 = 0;
             }
 
-
+            CHECK_TAG();
         }
     }
 }
@@ -6450,14 +6453,22 @@ void Print_Ticket(void){
 void CHECK_TAG(void){
    if(MFRC522_isCard(TagType)){
       if(MFRC522_ReadCardSerial(UID)){
-         UART_Println("ID: ");
          int i = 0;
-         char buf[20];
          for(i=0; i<5; i++){
             Aux[i] = UID[i];
-            Print_Ticket();
          }
-         Registro_busqueda(Aux);
+         unsigned int valor = Registro_busqueda();
+         if(valor == 0){
+            Valores[0] = anio;
+            Valores[1] = mes;
+            Valores[2] = dia;
+            Valores[3] = Hora;
+            Valores[4] = Minuto;
+            Guarda_ID();
+         }else{
+            Muestra_ID(valor);
+         }
+         Print_Ticket();
          MFRC522_Clear_UID(UID);
       }
       MFRC522_Halt();
