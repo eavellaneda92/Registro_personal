@@ -41,8 +41,11 @@ unsigned char mesx = 10;
 unsigned char diax = 28;
 
 //FUNCIONES PARA IMPRESORA Y RC622
-void Print_Ticket(void);
+void Print_Ticket(unsigned int valor);
 void CHECK_TAG(void);
+void New_Line(void);
+void Font_Big(void);
+void Font_Normal(void);
 
 //FUNCIONES PARA PANTALLA
 void Print_Menu(void);
@@ -116,7 +119,6 @@ void main(void) {
             //Espera de tiempo para leer tiempo
             if(flag_t1){
                 get_RTC(); //En esta funcion tambien se imprime el reloj
-                Print_Ticket();
                 flag_t1 = 0;
             }
             //Lectura de TARJETA
@@ -314,17 +316,28 @@ void get_key(void){
 }
 
 //Funcion Impresora
-void Print_Ticket(void){
+void Print_Ticket(unsigned int valor){
     Valores[0] = bcd_to_decimal(Valores[0]);
     Valores[1] = bcd_to_decimal(Valores[1]);
     Valores[2] = bcd_to_decimal(Valores[2]);
-    
+    New_Line();
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
     UART_Print(sms);
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     UART_Println(sms);
+    New_Line();
+    Font_Big();
+    UART_Print("ID: ");
+    sprintf(sms,"%d",valor);
+    UART_Println(sms);
+    Font_Normal();
+    UART_Println("Recuerde conservar su ticket");
+    New_Line();
+    New_Line();
+    New_Line();
+    UART_Write(0x1B);UART_Write(0x6D);
 }
 
 //Funcion RFID
@@ -343,6 +356,7 @@ void CHECK_TAG(void){
             Valores[3] = mes;
             Valores[4] = anio;
             Guarda_ID();
+            valor = EEPROM_getRegistro();
          }else{
             Muestra_ID(valor);
          }
@@ -351,4 +365,37 @@ void CHECK_TAG(void){
       }
       MFRC522_Halt();                        // Apaga la antena
    }
+}
+
+
+void New_Line(void){
+    UART_Write(0x0d);
+    UART_Write(0x0a);
+}
+
+void Font_Big(void){
+    UART_Write(0x1b);
+    UART_Write(0x40);
+    UART_Write(0x1d);
+    UART_Write(0x21);
+    UART_Write(0x10);
+    UART_Write(0x08);
+}
+
+void Font_Normal(void){
+    UART_Write(0x1b); 
+    UART_Write(0x40); 
+    UART_Write(0x1d); 
+    UART_Write(0x21); 
+    UART_Write(0x00);
+    UART_Write(0x0d); 
+    UART_Write(0x0a);
+    UART_Write(0x1B); 
+    UART_Write(0x44); 
+    UART_Write(0x00);
+    UART_Write(0x1B); 
+    UART_Write(0x40); 
+    UART_Write(0x1B); 
+    UART_Write(0x2D); 
+    UART_Write(0x00);
 }

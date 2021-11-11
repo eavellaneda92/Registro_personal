@@ -43,6 +43,16 @@ void EEPROM_setRegistro(unsigned int registro){
 void Guarda_ID(void){
     unsigned int registro = EEPROM_getRegistro();
     registro++;
+    EEPROM_Write(registro*10 + 0,Valores[0]);
+    EEPROM_Write(registro*10 + 1,Valores[1]);
+    EEPROM_Write(registro*10 + 2,Valores[2]);
+    EEPROM_Write(registro*10 + 3,Valores[3]);
+    EEPROM_Write(registro*10 + 4,Valores[4]);
+    EEPROM_Write(registro*10 + 5,Aux[0]);
+    EEPROM_Write(registro*10 + 6,Aux[0]);
+    EEPROM_Write(registro*10 + 7,Aux[0]);
+    EEPROM_Write(registro*10 + 8,Aux[0]);
+    EEPROM_Write(registro*10 + 9,Aux[0]);
     EEPROM_setRegistro(registro);
 }
 

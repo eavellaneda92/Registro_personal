@@ -89,35 +89,35 @@ extern double __fpnormalize(double);
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\xc8debug.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\xc8debug.h" 1 3
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdlib.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 1 3
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\musl_xc8.h" 1 3
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdlib.h" 2 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\musl_xc8.h" 1 3
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 2 3
 
 
 
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\features.h" 1 3
-# 10 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdlib.h" 2 3
-# 21 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdlib.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 18 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\features.h" 1 3
+# 10 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 2 3
+# 21 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 18 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long int wchar_t;
-# 122 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 122 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned size_t;
-# 168 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 168 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef __int24 int24_t;
-# 204 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 204 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef __uint24 uint24_t;
-# 21 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdlib.h" 2 3
+# 21 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 2 3
 
 
 int atoi (const char *);
@@ -170,7 +170,7 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 
 size_t __ctype_get_mb_cur_max(void);
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\xc8debug.h" 2 3
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\xc8debug.h" 2 3
 
 
 
@@ -5945,9 +5945,9 @@ void OLEDsetCursor(unsigned int x,unsigned int y);
 void OLEDClear(void);
 # 9 "main.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
 
 
 
@@ -5959,14 +5959,14 @@ typedef void * va_list[1];
 
 
 typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\bits/alltypes.h" 3
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c99\\stdio.h" 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
 typedef union _G_fpos64_t {
  char __opaque[16];
  double __align;
@@ -6164,8 +6164,11 @@ unsigned char mesx = 10;
 unsigned char diax = 28;
 
 
-void Print_Ticket(void);
+void Print_Ticket(unsigned int valor);
 void CHECK_TAG(void);
+void New_Line(void);
+void Font_Big(void);
+void Font_Normal(void);
 
 
 void Print_Menu(void);
@@ -6239,7 +6242,6 @@ void main(void) {
 
             if(flag_t1){
                 get_RTC();
-                Print_Ticket();
                 flag_t1 = 0;
             }
 
@@ -6437,16 +6439,28 @@ void get_key(void){
 }
 
 
-void Print_Ticket(void){
-    Hora = bcd_to_decimal(Hora);
-    Minuto = bcd_to_decimal(Minuto);
-    Segundo = bcd_to_decimal(Segundo);
+void Print_Ticket(unsigned int valor){
+    Valores[0] = bcd_to_decimal(Valores[0]);
+    Valores[1] = bcd_to_decimal(Valores[1]);
+    Valores[2] = bcd_to_decimal(Valores[2]);
+    New_Line();
     sprintf(sms,"%d%d:",Hora/10,Hora%10);
     UART_Print(sms);
     sprintf(sms,"%d%d:",Minuto/10,Minuto%10);
     UART_Print(sms);
     sprintf(sms,"%d%d",Segundo/10,Segundo%10);
     UART_Println(sms);
+    New_Line();
+    Font_Big();
+    UART_Print("ID: ");
+    sprintf(sms,"%d",valor);
+    UART_Println(sms);
+    Font_Normal();
+    UART_Println("Recuerde conservar su ticket");
+    New_Line();
+    New_Line();
+    New_Line();
+    UART_Write(0x1B);UART_Write(0x6D);
 }
 
 
@@ -6459,18 +6473,52 @@ void CHECK_TAG(void){
          }
          unsigned int valor = Registro_busqueda();
          if(valor == 0){
-            Valores[0] = anio;
-            Valores[1] = mes;
+            Valores[0] = Hora;
+            Valores[1] = Minuto;
             Valores[2] = dia;
-            Valores[3] = Hora;
-            Valores[4] = Minuto;
+            Valores[3] = mes;
+            Valores[4] = anio;
             Guarda_ID();
+            valor = EEPROM_getRegistro();
          }else{
             Muestra_ID(valor);
          }
-         Print_Ticket();
+         Print_Ticket(valor);
          MFRC522_Clear_UID(UID);
       }
       MFRC522_Halt();
    }
+}
+
+
+void New_Line(void){
+    UART_Write(0x0d);
+    UART_Write(0x0a);
+}
+
+void Font_Big(void){
+    UART_Write(0x1b);
+    UART_Write(0x40);
+    UART_Write(0x1d);
+    UART_Write(0x21);
+    UART_Write(0x10);
+    UART_Write(0x08);
+}
+
+void Font_Normal(void){
+    UART_Write(0x1b);
+    UART_Write(0x40);
+    UART_Write(0x1d);
+    UART_Write(0x21);
+    UART_Write(0x00);
+    UART_Write(0x0d);
+    UART_Write(0x0a);
+    UART_Write(0x1B);
+    UART_Write(0x44);
+    UART_Write(0x00);
+    UART_Write(0x1B);
+    UART_Write(0x40);
+    UART_Write(0x1B);
+    UART_Write(0x2D);
+    UART_Write(0x00);
 }

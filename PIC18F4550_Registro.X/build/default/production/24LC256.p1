@@ -709,108 +709,128 @@ Version 4.0 HI-TECH Software Intermediate Code
 "45
 [e ++ _registro -> -> 1 `i `ui ]
 "46
-[e ( _EEPROM_setRegistro (1 _registro ]
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 0 `i `ui -> *U + &U _Valores * -> -> -> 0 `i `ui `ux -> -> # *U &U _Valores `ui `ux `uc ]
 "47
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 1 `i `ui -> *U + &U _Valores * -> -> -> 1 `i `ui `ux -> -> # *U &U _Valores `ui `ux `uc ]
+"48
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 2 `i `ui -> *U + &U _Valores * -> -> -> 2 `i `ui `ux -> -> # *U &U _Valores `ui `ux `uc ]
+"49
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 3 `i `ui -> *U + &U _Valores * -> -> -> 3 `i `ui `ux -> -> # *U &U _Valores `ui `ux `uc ]
+"50
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 4 `i `ui -> *U + &U _Valores * -> -> -> 4 `i `ui `ux -> -> # *U &U _Valores `ui `ux `uc ]
+"51
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 5 `i `ui -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `uc ]
+"52
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 6 `i `ui -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `uc ]
+"53
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 7 `i `ui -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `uc ]
+"54
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 8 `i `ui -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `uc ]
+"55
+[e ( _EEPROM_Write (2 , + * _registro -> -> 10 `i `ui -> -> 9 `i `ui -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `uc ]
+"56
+[e ( _EEPROM_setRegistro (1 _registro ]
+"57
 [e :UE 371 ]
 }
-"49
+"59
 [v _Muestra_ID `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _Muestra_ID ]
 [v _valor `ui ~T0 @X0 1 r1 ]
 [f ]
-"50
-[e = *U + &U _Valores * -> -> -> 0 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 * _valor -> -> 10 `i `ui `uc ]
-"51
-[e = *U + &U _Valores * -> -> -> 1 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 1 `i `ui `uc ]
-"52
-[e = *U + &U _Valores * -> -> -> 2 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 2 `i `ui `uc ]
-"53
-[e = *U + &U _Valores * -> -> -> 3 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 3 `i `ui `uc ]
-"54
-[e = *U + &U _Valores * -> -> -> 4 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 4 `i `ui `uc ]
-"55
-[e = *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 5 `i `ui `uc ]
-"56
-[e = *U + &U _Aux * -> -> -> 1 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 6 `i `ui `uc ]
-"57
-[e = *U + &U _Aux * -> -> -> 2 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 7 `i `ui `uc ]
-"58
-[e = *U + &U _Aux * -> -> -> 3 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 8 `i `ui `uc ]
-"59
-[e = *U + &U _Aux * -> -> -> 4 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 9 `i `ui `uc ]
 "60
+[e = *U + &U _Valores * -> -> -> 0 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 * _valor -> -> 10 `i `ui `uc ]
+"61
+[e = *U + &U _Valores * -> -> -> 1 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 1 `i `ui `uc ]
+"62
+[e = *U + &U _Valores * -> -> -> 2 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 2 `i `ui `uc ]
+"63
+[e = *U + &U _Valores * -> -> -> 3 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 3 `i `ui `uc ]
+"64
+[e = *U + &U _Valores * -> -> -> 4 `i `ui `ux -> -> # *U &U _Valores `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 4 `i `ui `uc ]
+"65
+[e = *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 5 `i `ui `uc ]
+"66
+[e = *U + &U _Aux * -> -> -> 1 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 6 `i `ui `uc ]
+"67
+[e = *U + &U _Aux * -> -> -> 2 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 7 `i `ui `uc ]
+"68
+[e = *U + &U _Aux * -> -> -> 3 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 8 `i `ui `uc ]
+"69
+[e = *U + &U _Aux * -> -> -> 4 `i `ui `ux -> -> # *U &U _Aux `ui `ux -> ( _EEPROM_Read (1 + * _valor -> -> 10 `i `ui -> -> 9 `i `ui `uc ]
+"70
 [e :UE 372 ]
 }
-"62
+"72
 [v _Registro_busqueda `(ui ~T0 @X0 1 ef ]
 {
 [e :U _Registro_busqueda ]
 [f ]
-"63
+"73
 [v _registro `ui ~T0 @X0 1 a ]
 [e = _registro ( _EEPROM_getRegistro ..  ]
-"64
+"74
 {
 [v _i `ui ~T0 @X0 1 a ]
 [e = _i -> -> 1 `i `ui ]
 [e $U 377  ]
 [e :U 374 ]
 {
-"65
+"75
 [v _datox `uc ~T0 @X0 1 a ]
 [e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 5 `i `ui ]
-"66
+"76
 [e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 0 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 378  ]
 {
-"67
+"77
 [e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 6 `i `ui ]
-"68
+"78
 [e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 1 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 379  ]
 {
-"69
+"79
 [e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 7 `i `ui ]
-"70
+"80
 [e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 2 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 380  ]
 {
-"71
+"81
 [e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 8 `i `ui ]
-"72
+"82
 [e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 3 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 381  ]
 {
-"73
+"83
 [e = _datox ( _EEPROM_Read (1 + * _i -> -> 10 `i `ui -> -> 9 `i `ui ]
-"74
+"84
 [e $ ! == -> _datox `i -> *U + &U _Aux * -> -> -> 4 `i `ui `ux -> -> # *U &U _Aux `ui `ux `i 382  ]
 {
-"75
+"85
 [e ) _i ]
 [e $UE 373  ]
-"76
+"86
 }
 [e :U 382 ]
-"77
+"87
 }
 [e :U 381 ]
-"78
+"88
 }
 [e :U 380 ]
-"79
+"89
 }
 [e :U 379 ]
-"80
+"90
 }
 [e :U 378 ]
-"81
+"91
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 377 ]
 [e $ <= _i _registro 374  ]
 [e :U 375 ]
 }
-"82
+"92
 [e ) -> -> 0 `i `ui ]
 [e $UE 373  ]
-"83
+"93
 [e :UE 373 ]
 }
